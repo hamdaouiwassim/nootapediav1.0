@@ -1,0 +1,231 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Post;
+use Illuminate\Http\Request;
+use Auth;
+use App\Category;
+use Illuminate\Support\Facades\File;
+class PostController extends Controller
+{
+        //
+        /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        //
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+        if ( Auth::user()){
+            $categories = Category::all();
+            if (Auth::user()->role == "admin"){
+                return view('superuser.addPost')->with('categories',$categories);
+            }else if(Auth::user()->role == "editor"){
+                return view('editor.addPost')->with('categories',$categories);
+            }
+            
+        }
+        
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        //
+         //
+         if ( Auth::user()){
+            $post = new Post();
+            $post->title = $request->title;
+            $post->content = $request->content;
+            $post->stat = $request->stat;
+            $post->keywords = $request->keywords;
+            $post->iduser = Auth::user()->id ;
+            $post->idcategory = $request->category ;
+            if ( $request->file('image') ){
+                $newname = uniqid().".".$request->file('image')->getClientOriginalExtension();
+                    
+                //Move Uploaded File
+                $destinationPath = 'uploads/posts/images';
+                $request->file('image')->move($destinationPath,$newname);
+                $post->image = $newname;
+            }
+
+            if ( $request->file('soundfile') ){
+                $newname = uniqid().".".$request->file('soundfile')->getClientOriginalExtension();
+                    
+                //Move Uploaded File
+                $destinationPath = 'uploads/posts/sounds';
+                $request->file('soundfile')->move($destinationPath,$newname);
+                $post->soundfile = $newname;
+            }
+    
+        
+            if ( $post->save() ) {
+                return redirect()->back()->with('success',"تمت إضافة المقالة ");
+            }else{
+                return redirect()->back()->with('error',"لم تتم إضافة المقالة ");
+            }
+            
+         }
+         
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Post  $post
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Post $post)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Post  $post
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($idpost)
+    {
+        //
+        if ( Auth::user()){
+            $post = Post::find($idpost);
+            $categories = Category::all();
+            if (Auth::user()->role == "admin"){
+                return view('superuser.editPost')->with('post',$post)->with('categories',$categories);
+            }else if(Auth::user()->role == "editor"){
+                return view('editor.editPost')->with('post',$post)->with('categories',$categories);
+            }
+            
+        }
+
+        
+        
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Post  $post
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request)
+    {
+        //
+        if ( Auth::user()){
+        $post =Post::find($request->idpost);
+        
+     
+        $post->title = $request->title;
+        $post->content = $request->content;
+        $post->stat = $request->stat;
+        $post->keywords = $request->keywords;
+       
+        $post->idcategory = $request->category ;
+        if ( $request->file('image') ){
+
+            $image_path = base_path("public\uploads\posts\images\\$post->image");
+            //dd($image_path);
+    
+            if (File::exists($image_path)) {
+                //dd($image_path);
+                //File::delete($image_path);
+                unlink($image_path);
+            }
+            $newname = uniqid().".".$request->file('image')->getClientOriginalExtension();
+                
+            //Move Uploaded File
+            $destinationPath = 'uploads/posts/images';
+            $request->file('image')->move($destinationPath,$newname);
+            $post->image = $newname;
+        }
+        if ( $request->file('soundfile') ){
+
+            $soundfile_path = base_path("public\uploads\posts\sounds\\$post->soundfile");
+            //dd($soundfile_path);
+    
+            if (File::exists($soundfile_path)) {
+                //dd($soundfile_path);
+                //File::delete($soundfile_path);
+                unlink($soundfile_path);
+            }
+            $newname = uniqid().".".$request->file('soundfile')->getClientOriginalExtension();
+                
+            //Move Uploaded File
+            $destinationPath = 'uploads/posts/sounds';
+            $request->file('soundfile')->move($destinationPath,$newname);
+            $post->soundfile = $newname;
+        }
+
+    
+        if ( $post->save() ) {
+            return redirect()->back()->with('success',"تمت تحديث المقالة ");
+        }else{
+            return redirect()->back()->with('error',"لم تتم تحديث المقالة ");
+        }
+    }
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Post  $post
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($idpost)
+    {
+        //
+        if ( Auth::user()->role == "admin" || Post::find($idpost)->iduser = Auth::user()->id ){
+         
+            if ( Post::find($idpost) ){
+                $post = Post::find($idpost);
+                $image_path = base_path("public\uploads\posts\images\\$post->image");
+                //dd($image_path);
+
+                if (File::exists($image_path)) {
+                    //dd($image_path);
+                    //File::delete($image_path);
+                    unlink($image_path);
+                }
+                Post::find($idpost)->delete();
+              
+               return redirect()->back()->with('success',"تمّ حذف المقالة ");
+            }else{
+               
+                return redirect()->back()->with('error',"لم نستطع حذف المقالة ");
+            }
+        }else{
+            return redirect()->back()->with('error',"لا تملك صلوحيّة الولوج الي هذه الصفحة ");
+        }
+    }
+}
