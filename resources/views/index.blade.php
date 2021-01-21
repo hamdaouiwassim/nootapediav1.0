@@ -14,9 +14,9 @@
         <div class="col-6">
             <div class="card mb-3">
                 <div class="row g-0">
-                    <div class="col-lg-6 col-md-12">
+                    <div class="col-lg-6 col-md-12"  style="border-radius:0 3px 3px 0;min-height:200px;background-image: url({{ asset('uploads/posts/images')}}/{{ $post->image  }});background-size:cover">
 
-                        <img src="{{ asset('uploads/posts/images')}}/{{ $post->image  }}" class="img-fluid" alt="{{ $post->title }}">
+                        
                     </div>
                     <div class="col-lg-6 col-md-12">
                         <div class="card-body">

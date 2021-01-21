@@ -40,8 +40,8 @@ class DashboardController extends Controller
 
     public function posts(){
 
-        if (Auth::user()){
-            if(Auth::user() == "admin"){
+        
+            if(Auth::user()->role == "admin"){
                 $categories = Category::all();
                 $posts = Post::all();
                 return view('superuser.posts')->with('posts',$posts)->with('categories',$categories);
@@ -52,25 +52,25 @@ class DashboardController extends Controller
             }
             
 
-        }
+        
         return redirect('/');
         
        
 
     }
     public function categories(){
-        if (Auth::user()){
-            if(Auth::user() == "admin"){
+        
+            if(Auth::user()->role == "admin"){
         $categories = Category::all();
         return view('superuser.categories')->with('categories',$categories);
             }
-        }
+        
         return redirect('/');
 
     }
     public function users(){
-        if (Auth::user()){
-            if(Auth::user() == "admin"){
+       
+            if(Auth::user()->role == "admin"){
                 $users = User::all();
                 return view('superuser.users')->with('users',$users);
             }else{
@@ -78,7 +78,7 @@ class DashboardController extends Controller
             }
             
 
-        }
+        
         return redirect('/');
 
     }

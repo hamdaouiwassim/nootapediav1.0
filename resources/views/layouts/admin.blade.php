@@ -111,6 +111,11 @@
                 'help'
     ],
     toolbar: 'image link lists',
+    
+  /* ... */
+  content_style:
+    "@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800;900&display=swap'); body { font-family: Tajawal; }",
+
 
 
     
