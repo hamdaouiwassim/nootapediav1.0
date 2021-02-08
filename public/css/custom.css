@@ -1,6 +1,7 @@
+/** Added By Hamdaoui Wassim */
 @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800;900&display=swap');
 * {
-    font-family: 'Tajawal', sans-serif;
+    font-family: 'Tajawal', sans-serif !important;
 
 }
 
@@ -11,6 +12,22 @@
 p{
 font-size: 22px;
 }
+ @media screen and (max-width:992px){
+    .navbar-brand{
+        margin-right:40% !important;
+    }
+
+    
+}
+/*
+@media screen and (max-width:384px){
+    .navbar-brand{
+        width:60% !important;
+
+    }
+
+    
+} */
 
 
 .bootstrap-tagsinput {

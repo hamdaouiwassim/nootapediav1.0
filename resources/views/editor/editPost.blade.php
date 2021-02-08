@@ -36,32 +36,14 @@
                     <label class="form-label">عنوان المقالة</label>
                     <input type="text" class="form-control" name="title" required value="{{ $post->title }}">
                 </div>
-                <div class="mb-3">
-                    <label class="form-label">صورة للمقالة</label>
-                    <input type="file" class="form-control" name="image">
-                </div>
-                <div class="mb-3">
-                    <label  class="form-label">الملف الصوتي للمقالة</label>
-                    <input type="file" class="form-control" name="soundfile">
-                  </div>
+               
+               
                 <div class="mb-3">
                     <label class="form-label">محتوى المقالة </label>
-                    <textarea class="form-control" id="editor" name="content">{!!  $post->content !!}</textarea>
+                    <textarea class="form-control" rows="10" name="content">{!!  $post->content !!}</textarea>
                 </div>
-                <div class="mb-3">
-                    <label class="form-label">كلمات دلالية </label>
-                    <input data-role="tagsinput" id="tags-input" value="{{ $post->keywords }}" class="form-control"
-                        name="keywords" required />
-                </div>
-                <div class="mb-3">
-                    <label  class="form-label">حالة المقالة </label>
-                    <select name="stat" class="form-control">
-                        
-                      <option @if($post->stat == "saved") selected @endif value="saved">مسودة</option>
-                      <option @if($post->stat == "published") selected @endif value="published">منشورة</option>
-                      <option @if($post->stat == "trashed") selected @endif value="trashed">محذوفة</option>
-                    </select>
-                  </div>
+               
+            
                 <div class="mb-3">
                     <label class="form-label">تصنيف المقالة </label>
                     <select name="category" class="form-control">

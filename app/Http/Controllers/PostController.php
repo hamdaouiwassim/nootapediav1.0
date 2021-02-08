@@ -38,7 +38,7 @@ class PostController extends Controller
     public function create()
     {
         //
-        if ( Auth::user()){
+        
             $categories = Category::all();
             if (Auth::user()->role == "admin"){
                 return view('superuser.addPost')->with('categories',$categories);
@@ -46,7 +46,7 @@ class PostController extends Controller
                 return view('editor.addPost')->with('categories',$categories);
             }
             
-        }
+        
         
     }
 
@@ -60,14 +60,17 @@ class PostController extends Controller
     {
         //
          //
-         if ( Auth::user()){
+         
             $post = new Post();
             $post->title = $request->title;
             $post->content = $request->content;
-            $post->stat = $request->stat;
-            $post->keywords = $request->keywords;
+            $post->stat = "saved";
+            //$post->keywords = $request->keywords;
             $post->iduser = Auth::user()->id ;
             $post->idcategory = $request->category ;
+            if ($request->meta_description){
+                $post->meta_description = $request->meta_description ;
+            }
             if ( $request->file('image') ){
                 $newname = uniqid().".".$request->file('image')->getClientOriginalExtension();
                     
@@ -93,7 +96,7 @@ class PostController extends Controller
                 return redirect()->back()->with('error',"لم تتم إضافة المقالة ");
             }
             
-         }
+         
          
     }
 
@@ -117,7 +120,7 @@ class PostController extends Controller
     public function edit($idpost)
     {
         //
-        if ( Auth::user()){
+        
             $post = Post::find($idpost);
             $categories = Category::all();
             if (Auth::user()->role == "admin"){
@@ -126,7 +129,7 @@ class PostController extends Controller
                 return view('editor.editPost')->with('post',$post)->with('categories',$categories);
             }
             
-        }
+        
 
         
         
@@ -142,14 +145,28 @@ class PostController extends Controller
     public function update(Request $request)
     {
         //
-        if ( Auth::user()){
+       //dd($request);
         $post =Post::find($request->idpost);
         
      
         $post->title = $request->title;
         $post->content = $request->content;
-        $post->stat = $request->stat;
-        $post->keywords = $request->keywords;
+        
+        if (Auth::user()->role =="admin"){
+            if($request->stat){
+                $post->stat = $request->stat;
+            }
+            if($request->keywords){
+                $post->keywords = $request->keywords;
+            }
+            
+            
+        }
+        if ($request->meta_description){
+            $post->meta_description = $request->meta_description ;
+        }
+        
+        
        
         $post->idcategory = $request->category ;
         if ( $request->file('image') ){
@@ -193,7 +210,7 @@ class PostController extends Controller
         }else{
             return redirect()->back()->with('error',"لم تتم تحديث المقالة ");
         }
-    }
+    
     }
 
     /**

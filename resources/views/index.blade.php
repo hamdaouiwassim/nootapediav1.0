@@ -1,5 +1,9 @@
-@extends('layouts.user')
-
+@extends('layouts.user',array('categories',$categories))
+@section('title',' الصفحة الرئسية')
+@section('MetaDescription'," منصة عربية تثقيفية هدفها إثراء المحتوى العربي على
+الأنترنت من خلال مقالات و بحوث و أراء في العديد من المجالات , التاريخ , العلوم , تكنولوجيا , الأدب و
+الفنّ
+... يوفر الموقع خاصيّة الاستماع للمقالات صوتيا .")
 @section('content')
  <!-- posts -->
  <div class="container mt-5 pt-5 mb-5">
@@ -11,12 +15,13 @@
     <div class="row">
 
         @foreach($posts as $post)
-        <div class="col-6">
+        <div class="col-lg-6 col-md-12">
             <div class="card mb-3">
                 <div class="row g-0">
-                    <div class="col-lg-6 col-md-12"  style="border-radius:0 3px 3px 0;min-height:200px;background-image: url({{ asset('uploads/posts/images')}}/{{ $post->image  }});background-size:cover">
-
+                    <div class="col-lg-6 col-md-12" style="border-radius:0 3px 3px 0;min-height:200px;background-image: url({{ asset('uploads/posts/images')}}/{{ $post->image  }});background-size:cover">
                         
+
+                     
                     </div>
                     <div class="col-lg-6 col-md-12">
                         <div class="card-body">
@@ -304,7 +309,15 @@
 </div>
 
 
+ <!-- Global site tag (gtag.js) - Google Analytics -->
+ <script async src="https://www.googletagmanager.com/gtag/js?id=G-P1CHPHZCDN"></script>
+ <script>
+ window.dataLayer = window.dataLayer || [];
+ function gtag(){dataLayer.push(arguments);}
+ gtag('js', new Date());
 
+ gtag('config', 'G-P1CHPHZCDN');
+ </script>
 
 @endsection
    

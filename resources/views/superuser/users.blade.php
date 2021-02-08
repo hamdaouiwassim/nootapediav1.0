@@ -153,6 +153,7 @@
           <div class="modal-body">
             <form action="{{ route('EditUser') }}" method="POST" enctype="multipart/form-data">
               @csrf
+              <input type="hidden"  name="iduser"  value="{{ $u->id}}">
               <div class="mb-3">
                   <label  class="form-label">إسم المستخدم</label>
                   <input type="text" class="form-control" name="name" required value="{{ $u->name}}">
@@ -179,7 +180,7 @@
                 </div>
                 
                
-                <button type="submit" class="btn btn-primary">الحفظ</button>
+                <button type="submit" class="btn btn-primary">تحديث</button>
               </form>
           </div>
           

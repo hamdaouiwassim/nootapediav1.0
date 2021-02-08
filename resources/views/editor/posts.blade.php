@@ -18,7 +18,7 @@
 @endif
     <div class="row">
         <div class="col-6">
-            <h3> <i class="bi bi-file-earmark-medical-fill"></i> مقالات ({{ count($posts) }}) </h3>
+            <h3> <i class="bi bi-file-earmark-medical-fill"></i> {{ $type }} ({{ count($posts) }}) </h3>
         </div>
         
         <div class="col-6 text-end">
@@ -35,6 +35,7 @@
                     <th scope="col"> تاريخ النشر </th>
                     <th scope="col"> الصورة الدلالية </th>
                     <th scope="col"> الكاتب </th>
+                    <th scope="col"> الحالة </th>
                     <th scope="col">التعامل</th>
                   </tr>
                 </thead>
@@ -58,8 +59,23 @@
                     </td>
                     <td>{{ $p->user->name }}</td>
                     <td>
-                        <a class="btn btn-success" href="{{ route('ShowEditPost',['id'=> $p->id ]) }}"><i class="bi bi-pencil-square"></i> تغيير</a>
-                        <a class="btn btn-danger" onclick="return confirm('هل أنت متأكد من أنك تريد حذف المقال ؟ ')" href="{{ route('DeletePost',['id' => $p->id ]) }}" ><i class="bi bi-trash2-fill"></i> حذف</a>
+                    @if ($p->stat == "published" )
+                      منشورة
+                      @elseif ($p->stat == "reviewed")
+                      المراجعة
+                      @elseif($p->stat == "checked")
+                      التدقيق
+                      @else
+                      مسودة
+                     @endif
+
+                    </td>
+                    <td>
+                    <a class="btn btn-primary" href="{{ route('ShowDashboardPost',['id'=> $p->id ]) }} " title="معاينة المقالة"><i class="bi bi-eye"></i> </a>
+                    @if ($p->stat == "saved" )
+                        <a class="btn btn-success" href="{{ route('ShowEditPost',['id'=> $p->id ]) }}" title="تحديث المقالة"><i class="bi bi-pencil-square"></i> </a>
+                        <a class="btn btn-danger" onclick="return confirm('هل أنت متأكد من أنك تريد حذف المقال ؟ ')" title="حذف المقالة" href="{{ route('DeletePost',['id' => $p->id ]) }}" ><i class="bi bi-trash2-fill"></i> </a>
+                        @endif
                     </td>
                   </tr>
                   

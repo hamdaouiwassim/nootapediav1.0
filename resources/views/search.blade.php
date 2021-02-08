@@ -1,24 +1,25 @@
-@extends('layouts.user')
-
+@extends('layouts.user',array('categories',$categories))
+@section('title',' البحث')
 @section('content')
     <!-- posts -->
 
     <div class="container mt-5 pt-5  mb-5  col-lg-8  col-md-12">
       
 
-            <div class="alert alert-secondary">
-                <h4> أنت ضمن صفحة البحث في موقع نوتابيديا </h4>
+            <div class="alert alert-secondary text-center">
+                <h4><i class="bi bi-search"></i>  البحث </h4>
             </div>
            
                 <form action="{{ route('Search') }}" class="col-12 pr-3 mt-5 mb-5" method="POST">
                     @csrf
                     <div class="form-group">
-                        <input type="text" placeholder="إكتب ما تريد البحث عنه..." name="searchkeywords" class="form-control p-3 mr-3 @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}">
+                        <input type="text" id="searchkeywords" placeholder="إكتب ما تريد البحث عنه..." name="searchkeywords" class="form-control p-3 mr-3 @error('searchkeywords') is-invalid @enderror"  value="{{ old('searchkeywords') }}">
                     </div>
+                    
                     @error('searchkeywords')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
+                    <div class="mt-2">
+                        <span class="text-danger">{{ $message }}</span>
+                    </div>
                     @enderror
              
                     <div class="form-group mt-3">

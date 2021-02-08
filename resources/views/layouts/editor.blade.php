@@ -8,7 +8,7 @@
       <meta name="csrf-token" content="{{ csrf_token() }}">
 
       <title>نوتابيديا : الصفحة الرئسية</title>
-     
+      <link rel="icon" href="{{ asset('img/1.png') }}" type="image/x-icon"/>
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
       <link rel="preconnect" href="https://fonts.gstatic.com">
       <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800;900&display=swap"
@@ -33,8 +33,12 @@
                             <a class="nav-link active" aria-current="page" href="/"><i class="bi bi-house-fill"></i>
                                 الموقع</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('dashboardposts') }}"><i class="bi bi-file-earmark-medical-fill"></i> مقالات</a>
+                       <li class="nav-item">
+                            <a class="nav-link" href="{{ route('dashboardPostsSaved') }}"><i class="bi bi-file-earmark-fill"></i> مسودّات</a>
+                        </li>
+            
+                         <li class="nav-item">
+                            <a class="nav-link" href="{{ route('dashboardposts') }}"><i class="bi bi-file-earmark-check-fill"></i> مقالات</a>
                         </li>
                         
                         
@@ -74,6 +78,10 @@
                 الأنترنت من خلال مقالات و بحوث و أراء في العديد من المجالات , التاريخ , العلوم , تكنولوجيا , الأدب و
                 الفنّ
                 ... يوفر الموقع خاصيّة الاستماع للمقالات صوتيا . </p>
+                <p class="text-center p-4">
+                    <a href="https://www.instagram.com/nootapedia" target="_blank"class="btn btn-outline-secondary text-white"><i class="bi bi-instagram"></i></a>
+                    <a href="https://www.facebook.com/nootapedia" target="_blank"class="btn btn-outline-secondary text-white"><i class="bi bi-facebook"></i></a>
+                </p>
             <hr>
             <p class="text-center">
                 <span style="font-size: 12px;"> كل الحقوق محفوظة لنوتابيديا - 2020 | محتوانا مقدم للجميع فالمرجو إحترامه

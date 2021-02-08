@@ -46,7 +46,7 @@
                   </div>
                 <div class="mb-3">
                     <label class="form-label">محتوى المقالة </label>
-                    <textarea class="form-control" id="editor" name="content">{!!  $post->content !!}</textarea>
+                    <textarea class="form-control" rows="10"  name="content"> {!! $post->content !!}</textarea>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">كلمات دلالية </label>
@@ -75,6 +75,10 @@
                         @endforeach
                     </select>
                 </div>
+                <div class="mb-3">
+                    <label  class="form-label">وصف الصفحة ( خاصّ بمحركات البحث ) </label>
+                    <textarea  class="form-control"  name="meta_description"  >{{ $post->meta_description }}</textarea>
+                  </div>
                 <button type="submit" class="btn btn-primary">الحفظ</button>
             </form>
         </div>

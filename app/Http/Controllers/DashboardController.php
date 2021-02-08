@@ -43,19 +43,40 @@ class DashboardController extends Controller
         
             if(Auth::user()->role == "admin"){
                 $categories = Category::all();
-                $posts = Post::all();
-                return view('superuser.posts')->with('posts',$posts)->with('categories',$categories);
+                $posts = Post::where('stat','published')->get();
+                return view('superuser.posts')->with('posts',$posts)->with('categories',$categories)->with('type','مقالات');
             }else{
                 $categories = Category::all();
-                $posts = Auth::user()->posts;
-                return view('editor.posts')->with('posts',$posts)->with('categories',$categories);
+                $posts = Auth::user()->posts()->where('stat','published')->get();
+                return view('editor.posts')->with('posts',$posts)->with('categories',$categories)->with('type','مقالات');
             }
-            
+    }
+    public function postsSaved(){
+        if(Auth::user()->role == "admin"){
+            $categories = Category::all();
+            $posts = Post::where('stat','saved')->get();
+            return view('superuser.posts')->with('posts',$posts)->with('categories',$categories)->with('type','مسودات');
+        }else{
+            $categories = Category::all();
+            $posts = Auth::user()->posts()->where('stat','saved')->get();
+            return view('editor.posts')->with('posts',$posts)->with('categories',$categories)->with('type','مسودات');
+        }
 
-        
-        return redirect('/');
-        
-       
+    }
+    public function postsReviewed(){
+        if(Auth::user()->role == "admin"){
+            $categories = Category::all();
+            $posts = Post::where('stat','reviewed')->get();
+            return view('superuser.posts')->with('posts',$posts)->with('categories',$categories)->with('type','مراجعات');
+        }
+
+    }
+    public function postsChecked(){
+        if(Auth::user()->role == "admin"){
+            $categories = Category::all();
+            $posts = Post::where('stat','checked')->get();
+            return view('superuser.posts')->with('posts',$posts)->with('categories',$categories)->with('type','تدقيق');
+        }
 
     }
     public function categories(){
@@ -63,9 +84,11 @@ class DashboardController extends Controller
             if(Auth::user()->role == "admin"){
         $categories = Category::all();
         return view('superuser.categories')->with('categories',$categories);
+            }else{
+                return redirect('/dashboard');
             }
         
-        return redirect('/');
+        
 
     }
     public function users(){
@@ -79,10 +102,14 @@ class DashboardController extends Controller
             
 
         
-        return redirect('/');
+        
 
     }
-   
+   public function ShowPost($idpost){
+       $categories= Category::all();
+       return view('superuser.post')->with('post',Post::find($idpost))->with('categories',$categories);
+
+   }
    
    
 }

@@ -84,9 +84,23 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         //
+        $user = User::find($request->iduser);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->phone = $request->telephone;
+        $user->role = $request->role;
+        if ($request->password){
+            $user->password = Hash::make($request->password);
+        }
+      
+        if ( $user->update() ) {
+            return redirect()->back()->with('success',"تمت تحديث بيانات المستخدم ");
+        }else{
+            return redirect()->back()->with('error',"لم تتم تحديث بيانات المستخدم ");
+        }
     }
 
     /**

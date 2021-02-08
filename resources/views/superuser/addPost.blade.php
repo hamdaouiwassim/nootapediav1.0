@@ -28,37 +28,22 @@
             <hr />
 
         
-        <div>
+            <div>
             <form action="{{ route('AddPost')}} " method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="mb-3">
                     <label  class="form-label">عنوان المقالة</label>
-                    <input type="text" class="form-control" name="title" required placeholder="شخصيات ...">
+                    <input type="text" class="form-control" name="title" required placeholder="عنوان المقال ...">
                   </div>
-                  <div class="mb-3">
-                    <label  class="form-label">صورة للمقالة</label>
-                    <input type="file" class="form-control" name="image">
-                  </div>
-                  <div class="mb-3">
-                    <label  class="form-label">الملف الصوتي للمقالة</label>
-                    <input type="file" class="form-control" name="soundfile">
-                  </div>
+               
                   <div class="mb-3">
                     <label  class="form-label">محتوى المقالة </label>
-                    <textarea class="form-control" id="editor" name="content"  ></textarea>
+                    {{-- <textarea class="form-control" id="editor" name="content"  ></textarea> --}}
+                    <textarea class="form-control"  name="content" rows="10" placeholder="إكتب محتوى المقالة هنا ...." ></textarea>
+              
                   </div>
-                  <div class="mb-3">
-                    <label  class="form-label">كلمات دلالية </label>
-                    <input data-role="tagsinput" id="tags-input"  class="form-control"  name="keywords" required />
-                  </div>
-                  <div class="mb-3">
-                    <label  class="form-label">حالة المقالة </label>
-                    <select name="stat" class="form-control">
-                      <option value="saved">مسودة</option>
-                      <option value="published">منشورة</option>
-                      <option value="trashed">محذوفة</option>
-                    </select>
-                  </div>
+                 
+                  
                   <div class="mb-3">
                     <label  class="form-label">تصنيف المقالة </label>
                     <select name="category" class="form-control">

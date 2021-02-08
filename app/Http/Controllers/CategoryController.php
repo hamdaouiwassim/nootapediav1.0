@@ -6,6 +6,7 @@ use App\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Auth;
+use Str;
 class CategoryController extends Controller
 {
         //
@@ -27,6 +28,7 @@ class CategoryController extends Controller
     public function index()
     {
         //
+        
     }
 
     /**
@@ -75,9 +77,11 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function show(Category $category)
+    public function show()
     {
-        //
+       
+
+
     }
 
     /**
@@ -162,5 +166,15 @@ class CategoryController extends Controller
         }
       
         
+    }
+    public function chercherSpace($taglessBody,$n){
+        for( $i=$n; $i<=strlen($taglessBody); $i++ ){
+            if ( $taglessBody[$i] == " "){
+                    return $i;
+            } 
+
+        }
+        return strlen($taglessBody);
+
     }
 }
