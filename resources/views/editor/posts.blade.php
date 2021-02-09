@@ -55,6 +55,8 @@
                     <td>
                        @if($p->image)
                         <img src="{{ asset('uploads/posts/images') }}/{{ $p->image }}" style="max-width: 100px;" alt="{{$p->title}}" class="img-thumbnail">
+                        @else
+                        غير متاحة
                         @endif
                     </td>
                     <td>{{ $p->user->name }}</td>
@@ -62,20 +64,27 @@
                     @if ($p->stat == "published" )
                       منشورة
                       @elseif ($p->stat == "reviewed")
-                      المراجعة
-                      @elseif($p->stat == "checked")
-                      التدقيق
+                      تمّت مراجعتها
+                      @elseif ($p->stat == "inreview")
+                                   في طور المراجعة
+                      @elseif ($p->stat == "refused")
+                      إعادة التثبت
                       @else
-                      مسودة
-                     @endif
+                                    مسودة
+                      @endif
 
                     </td>
                     <td>
                     <a class="btn btn-primary" href="{{ route('ShowDashboardPost',['id'=> $p->id ]) }} " title="معاينة المقالة"><i class="bi bi-eye"></i> </a>
-                    @if ($p->stat == "saved" )
+                    @if ($p->stat == "saved" || $p->stat == "refused" )
                         <a class="btn btn-success" href="{{ route('ShowEditPost',['id'=> $p->id ]) }}" title="تحديث المقالة"><i class="bi bi-pencil-square"></i> </a>
-                        <a class="btn btn-danger" onclick="return confirm('هل أنت متأكد من أنك تريد حذف المقال ؟ ')" title="حذف المقالة" href="{{ route('DeletePost',['id' => $p->id ]) }}" ><i class="bi bi-trash2-fill"></i> </a>
+                        <a class="btn btn-dark" href="{{ route('SendPostToReview',['id'=> $p->id ]) }}" title="أرسل للمراجعة"><i class="bi bi-arrow-left-circle"></i> </a>
+                        @if($p->stat == "saved")
+                            <a class="btn btn-danger" onclick="return confirm('هل أنت متأكد من أنك تريد حذف المقال ؟ ')" title="حذف المقالة" href="{{ route('DeletePost',['id' => $p->id ]) }}" ><i class="bi bi-trash2-fill"></i> </a>
+                        @else
+                        <a class="btn btn-info text-white"  title="إقرأ الملاحظات"  ><i class="bi bi-book-fill"></i> </a>
                         @endif
+                         @endif
                     </td>
                   </tr>
                   

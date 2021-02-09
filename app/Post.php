@@ -13,4 +13,8 @@ class Post extends Model
     public function category(){
         return $this->belongsTo('App\Category','idcategory','id');
     }
+    public function postnotes(){
+        return $this->hasMany('App\Postnotes','idpost','id');
+    }
+    
 }

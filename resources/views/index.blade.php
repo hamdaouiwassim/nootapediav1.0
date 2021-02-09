@@ -1,5 +1,5 @@
 @extends('layouts.user',array('categories',$categories))
-@section('title',' الصفحة الرئسية')
+@section('title',' الصفحة الرئيسية')
 @section('MetaDescription'," منصة عربية تثقيفية هدفها إثراء المحتوى العربي على
 الأنترنت من خلال مقالات و بحوث و أراء في العديد من المجالات , التاريخ , العلوم , تكنولوجيا , الأدب و
 الفنّ

@@ -40,6 +40,17 @@ Route::get('/dashboard/posts', 'DashboardController@posts')->name('dashboardpost
 Route::get('/dashboard/post/show/data/{id}', 'DashboardController@ShowPost')->name('ShowDashboardPost');
 Route::get('/dashboard/posts/saved', 'DashboardController@postsSaved')->name('dashboardPostsSaved');
 Route::get('/dashboard/posts/reviewed', 'DashboardController@postsReviewed')->name('dashboardPostsReviewed');
+Route::get('/dashboard/posts/inreview', 'DashboardController@PostsInReview')->name('dashboardPostsInReview');
+Route::post('/dashboard/posts/filter', 'DashboardController@FilterPosts')->name('DashboardFilterPosts');
+
+Route::get('/dashboard/posts/user/reviewed', 'DashboardController@postsReviewedUser')->name('dashboardPostsReviewedUser');
+Route::get('/dashboard/posts/user/inreview', 'DashboardController@PostsInReviewUser')->name('dashboardPostsInReviewUser');
+
+Route::get('/dashboard/post/send/to/review/{id}', 'DashboardController@SendPostToReview')->name('SendPostToReview');
+Route::get('/dashboard/post/send/to/share/{id}', 'DashboardController@SendPostToShare')->name('SendPostToShare');
+Route::post('/dashboard/post/resend/to/writer', 'DashboardController@ResendPostToWriter')->name('ResendPostToWriter');
+
+
 Route::get('/dashboard/post/delete/{id}', 'PostController@destroy')->name('DeletePost');
 Route::post('/dashboard/post/add', 'PostController@store')->name('AddPost');
 Route::get('/dashboard/post/show/add', 'PostController@create')->name('ShowAddPost');

@@ -61,6 +61,8 @@
                     <td>
                        @if($p->image)
                         <img src="{{ asset('uploads/posts/images') }}/{{ $p->image }}" style="max-width: 100px;" alt="{{$p->title}}" class="img-thumbnail">
+                        @else
+                        غير متاحة
                         @endif
                     </td>
                     <td>{{ $p->user->name }}</td>

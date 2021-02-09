@@ -5,7 +5,7 @@
 
 @section('content')
     <!-- posts -->
-    <div class="col-md-12" style="height:500px;background-image: url('{{ asset('uploads/posts/images')}}/{{ $post->image }}');background-size:cover">
+    <div class="col-md-12" @if($post->image) style="height:500px;background-image: url('{{ asset('uploads/posts/images')}}/{{ $post->image }}');background-size:cover" @else style="height:500px;background-image: url('{{ asset('img/nootapedia.png')}}');background-size:cover" @endif >
        
     </div>
     <div class="container pt-2  mb-5  col-lg-8  col-md-12">
@@ -19,8 +19,8 @@
 
             <div class="col-12">                
                     <button class="btn btn-primary"><i class="bi bi-calendar-fill"></i> {{ $post->created_at->format('Y/m/d') }}</button>
-                    <button class="btn btn-success"><i class="bi bi-clock-fill"></i> {{ $post->created_at->format('H:i:s') }}</button>
-                    <button class="btn btn-danger"><i class="bi bi-tag-fill"></i> {{ $post->category->name }}</button>
+                    <button class="btn btn-success"><i class="bi bi-eye-fill"></i> {{ $post->views }}</button>
+                    <a href="{{ Route('CategoryPost',['name'=>$post->category->name]) }}" class="btn btn-danger"><i class="bi bi-tag-fill"></i> {{ $post->category->name }}</a>
                     <div class="card text-center mt-3">
                         @if($post->soundfile)
                         <div class="card-header"> الإستماع صوتيّا الى المقال </div>
@@ -37,8 +37,11 @@
                     </div>
             </div>
             <div class="col-12 text-center">
+                @if($post->image)
             <img src="{{ asset('uploads/posts/images')}}/{{ $post->image }}" alt="{{ $post->title }}" class="img-fluid img-thumbnail">
-
+            @else
+            <img src="{{ asset('img/nootapedia.png')}}" alt="{{ $post->title }}" class="img-fluid img-thumbnail">
+                @endif
         </div>
             <div class="col-12 pt-5">
                 <p style="font-size:1.4rem">
@@ -46,7 +49,7 @@
                     </p>
                
              </div>
-             <div class="alert alert-secondary mt-3">
+             <div class="alert alert-secondary mt-3 mr-2 ml-2">
                  رأيك يستحقّ أن يسمعه الأخرون ... إترك تعليقك ليعرف العالم من أنت 
              </div>
            

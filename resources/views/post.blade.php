@@ -49,7 +49,7 @@
             
                
              </div>
-             <div class="alert alert-secondary mt-3">
+             <div class="alert alert-secondary mt-3 mr-2 ml-2">
                  رأيك يستحقّ أن يسمعه الأخرون ... إترك تعليقك ليعرف العالم من أنت 
              </div>
             <div class="fb-comments col-12" data-href="{{ url()->current() }}" data-width="100%" data-numposts="5"></div>

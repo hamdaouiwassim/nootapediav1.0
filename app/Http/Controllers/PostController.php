@@ -127,6 +127,8 @@ class PostController extends Controller
                 return view('superuser.editPost')->with('post',$post)->with('categories',$categories);
             }else if(Auth::user()->role == "editor"){
                 return view('editor.editPost')->with('post',$post)->with('categories',$categories);
+            }else{
+                return view('verificateur.editPost')->with('post',$post)->with('categories',$categories);
             }
             
         

@@ -22,13 +22,13 @@
     <div id="app">
         <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
-                <a class="navbar-brand" href="/">نوتابيديا</a>
+                <a class="navbar-brand" style="margin-right:70px;"  href="/">نوتابيديا</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
+                <div class="collapse navbar-collapse" style="margin:0 auto;text-align:center" id="navbarNav">
+                    <ul class="navbar-nav" style="margin:0 auto;">
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="/"><i class="bi bi-house-fill"></i>
                                 الموقع</a>
@@ -36,9 +36,14 @@
                        <li class="nav-item">
                             <a class="nav-link" href="{{ route('dashboardPostsSaved') }}"><i class="bi bi-file-earmark-fill"></i> مسودّات</a>
                         </li>
-            
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('dashboardPostsInReviewUser') }}"><i class="bi bi-file-earmark-font-fill"></i> في طور المراجعة</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('dashboardPostsReviewedUser') }}"><i class="bi bi-file-earmark-check-fill"></i> تمّت المراجعة</a>
+                        </li>
                          <li class="nav-item">
-                            <a class="nav-link" href="{{ route('dashboardposts') }}"><i class="bi bi-file-earmark-check-fill"></i> مقالات</a>
+                            <a class="nav-link" href="{{ route('dashboardposts') }}"><i class="bi bi-file-check-fill"></i> مقالات</a>
                         </li>
                         
                         

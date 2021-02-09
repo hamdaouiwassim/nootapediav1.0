@@ -127,6 +127,7 @@
                       <option value="">إختر نوع الحساب</option>
                       <option value="admin">مشرف</option>
                       <option value="editor">محرّر</option>
+                      <option value="verificateur"  >مدقق</option>
                     </select>
                 </div>
                 
@@ -176,6 +177,7 @@
                       <option value="">إختر نوع الحساب</option>
                       <option value="admin" @if( $u->role == "admin" )  selected @endif >مشرف</option>
                       <option value="editor" @if( $u->role == "editor" ) selected @endif >محرّر</option>
+                      <option value="verificateur" @if( $u->role == "verificateur" ) selected @endif >مدقق</option>
                     </select>
                 </div>
                 
