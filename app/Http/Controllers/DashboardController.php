@@ -54,7 +54,7 @@ class DashboardController extends Controller
                 return view('superuser.posts')->with('posts',$posts)->with('categories',$categories)->with('type','مقالات')->with('users',$users);
             }elseif(Auth::user()->role == "editor"){
                 $categories = Category::all();
-                $posts = Auth::user()->posts()->whereIn('stat',['published','reviewed'])->OrderBy('created_at','DESC')->get();
+                $posts = Post::whereIn('stat',['published','reviewed'])->OrderBy('created_at','DESC')->get();
                 return view('editor.posts')->with('posts',$posts)->with('categories',$categories)->with('type','مقالات')->with('users',$users);
             }else{
                 $categories = Category::all();
@@ -66,7 +66,7 @@ class DashboardController extends Controller
         $users = User::all();
         if(Auth::user()->role == "admin"){
             $categories = Category::all();
-            $posts = Post::where('stat','saved')->get();
+            $posts = Post::whereIn('stat',['saved','refused'])->get();
             return view('superuser.posts')->with('posts',$posts)->with('categories',$categories)->with('type','مسودات')->with('users',$users);
         }elseif(Auth::user()->role == "editor"){
             $categories = Category::all();
@@ -101,7 +101,7 @@ class DashboardController extends Controller
         $users = User::all();
         if(Auth::user()->role == "admin"){
             $categories = Category::all();
-            $posts = Post::where('stat','reviewed')->get();
+            $posts = Post::where('stat','inreview')->get();
             return view('superuser.posts')->with('posts',$posts)->with('categories',$categories)->with('type','مراجعات')->with('users',$users);
         }
 
@@ -148,12 +148,13 @@ class DashboardController extends Controller
    }
 
    public function postsReviewedUser(){
+    $users = User::all();
        if ( Auth::user()->role == "editor"){
         $categories= Category::all();
-        return view('editor.posts')->with('posts',Auth::user()->posts()->where('stat','reviewed')->get())->with('categories',$categories)->with('type','تمّت مراجعتها');
+        return view('editor.posts')->with('posts',Auth::user()->posts()->where('stat','reviewed')->get())->with('categories',$categories)->with('type','تمّت مراجعتها')->with('users',$users);
        
        }elseif ( Auth::user()->role == "verificateur"){
-           $users = User::all();
+           
         $categories= Category::all();
         return view('verificateur.posts')->with('posts',Post::where('stat','reviewed')->get())->with('categories',$categories)->with('users',$users)->with('type','تمّت مراجعتها');
        
@@ -166,7 +167,7 @@ class DashboardController extends Controller
         $post = Post::find($idpost);
         $post->stat = "inreview";
         $post->update();
-        return redirect('dashboard/posts/user/reviewed');
+        return redirect('dashboard/posts/user/inreview');
 
    }
    public function SendPostToShare($idpost){
@@ -194,7 +195,7 @@ class DashboardController extends Controller
                $postnotes->notes = $request->notes;
                $postnotes->save();
            }
-        return redirect('dashboard/posts/inreviewed');
+        return redirect('dashboard/posts/inreview');
 
 
 
@@ -204,7 +205,7 @@ class DashboardController extends Controller
    
    public function FilterPosts(Request $request){
        //dd($request);
-       echo $request->postStat;
+       //echo $request->postStat;
        $posts = Post::whereIn('stat',['published','reviewed'])->Orwhere('stat','reviewed')->OrderBy('created_at','DESC')->get();
         if( $request->postStat && $request->postWriter && $request->postDate ){
             $posts = Post::where('idcategory',$request->postStat)
@@ -255,6 +256,28 @@ class DashboardController extends Controller
                 return view('verificateur.posts')->with('posts',$posts->where('stat','reviewed'))->with('categories',$categories)->with('type',$request->postsType)->with('users',$users);
             }
             return view('verificateur.posts')->with('posts',$posts->whereIn('stat',['reviewed','published']))->with('categories',$categories)->with('type',$request->postsType)->with('users',$users);
+        }elseif(Auth::user()->role == "editor"){
+            $categories = Category::all();
+            if ( $request->postsType == "مسودات"){
+                return view('editor.posts')->with('posts',$posts->where('iduser',Auth::user()->id)->whereIn('stat',['saved','refused']))->with('categories',$categories)->with('type',$request->postsType)->with('users',$users);
+            }elseif ($request->postsType == "مقالات في طور المراجعة"){
+                return view('editor.posts')->with('posts',$posts->where('iduser',Auth::user()->id)->where('stat','inreview'))->with('categories',$categories)->with('type',$request->postsType)->with('users',$users);
+            }elseif ($request->postsType == "تمّت مراجعتها"){
+                return view('editor.posts')->with('posts',$posts->where('iduser',Auth::user()->id)->where('stat','reviewed'))->with('categories',$categories)->with('type',$request->postsType)->with('users',$users);
+            }
+            return view('editor.posts')->with('posts',$posts->whereIn('stat',['reviewed','published']))->with('categories',$categories)->with('type',$request->postsType)->with('users',$users);
+      
+        }else{
+            $categories = Category::all();
+            if ( $request->postsType == "مسودات"){
+                return view('superuser.posts')->with('posts',$posts->whereIn('stat',['saved','refused']))->with('categories',$categories)->with('type',$request->postsType)->with('users',$users);
+            }elseif ($request->postsType == "مقالات في طور المراجعة"){
+                return view('superuser.posts')->with('posts',$posts->where('stat','inreview'))->with('categories',$categories)->with('type',$request->postsType)->with('users',$users);
+            }elseif ($request->postsType == "تمّت مراجعتها"){
+                return view('superuser.posts')->with('posts',$posts->where('stat','reviewed'))->with('categories',$categories)->with('type',$request->postsType)->with('users',$users);
+            }
+            return view('superuser.posts')->with('posts',$posts->whereIn('stat',['reviewed','published']))->with('categories',$categories)->with('type',$request->postsType)->with('users',$users);
+       
         }
    }
    

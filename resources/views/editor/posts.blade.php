@@ -24,6 +24,44 @@
         <div class="col-6 text-end">
             <a href="{{ route('ShowAddPost') }}"  class="btn btn-secondary ms-auto"> <i class="bi bi-cloud-plus-fill"></i> أضف مقالة </a>
         </div>
+        <div class="col-12 alert alert-secondary">
+          <form action="{{ route('DashboardFilterPosts')}}" method="POST" class="row">
+              @csrf
+              <input type="hidden" name="postsType" value="{{ $type }}">
+              
+              <div class="col-3">
+                  <select name="postStat"  class="form-control">
+                      <option value="">-- التصنيف --</option>
+                      @foreach ($categories as $cat)
+                              <option value="{{ $cat->id }}">{{ $cat->name }}</option>
+                      
+                      @endforeach
+                  </select>
+              </div>
+              <div class="col-3">
+                  <select name="postWriter" id="" class="form-control">
+                      <option value="">-- الكاتب --</option>
+                      @foreach ($users as $user)
+                          @if ($user->role != 'verificateur')
+                              <option value="{{ $user->id }}">{{ $user->name }}</option>
+                          @endif
+                      @endforeach
+
+                  </select>
+              </div>
+              <div class="col-3">
+                  <input type="date" class="form-control" name="postDate" >
+              </div>
+              <div class="col-3 d-grid gap-2">
+                <button class="btn btn-primary" type="submit">
+                  فلترة
+                </button>
+              </div>
+
+
+
+          </form>
+      </div>
     </div>
     <hr />
         <div>
@@ -81,10 +119,11 @@
                         <a class="btn btn-dark" href="{{ route('SendPostToReview',['id'=> $p->id ]) }}" title="أرسل للمراجعة"><i class="bi bi-arrow-left-circle"></i> </a>
                         @if($p->stat == "saved")
                             <a class="btn btn-danger" onclick="return confirm('هل أنت متأكد من أنك تريد حذف المقال ؟ ')" title="حذف المقالة" href="{{ route('DeletePost',['id' => $p->id ]) }}" ><i class="bi bi-trash2-fill"></i> </a>
-                        @else
-                        <a class="btn btn-info text-white"  title="إقرأ الملاحظات"  ><i class="bi bi-book-fill"></i> </a>
                         @endif
+                        
                          @endif
+                         <a class="btn btn-info text-white" data-bs-toggle="modal" data-bs-target="#postNotes{{$p->id}}" title="إقرأ الملاحظات"  ><i class="bi bi-book-fill"></i> </a>
+                        
                     </td>
                   </tr>
                   
@@ -103,49 +142,35 @@
     <hr />
    
 </div>
-
+@foreach ($posts as $p)
 <!-- Modal -->
-<div class="modal  fade" id="postAdd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal  fade" id="postNotes{{$p->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">إضافة مقالة </h5>
+          <h5 class="modal-title"> ملاحظات عليك مراجعتها </h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form action="{{ route('AddPost')}} " method="POST" enctype="multipart/form-data">
-            @csrf
-            <div class="mb-3">
-                <label  class="form-label">عنوان المقالة</label>
-                <input type="text" class="form-control" name="title" required placeholder="شخصيات ...">
-              </div>
-              <div class="mb-3">
-                <label  class="form-label">صورة للمقالة</label>
-                <input type="file" class="form-control" name="image">
-              </div>
-              <div class="mb-3">
-                <label  class="form-label">محتوى المقالة </label>
-                <textarea class="form-control" id="editor" name="content"  ></textarea>
-              </div>
-              <div class="mb-3">
-                <label  class="form-label">كلمات دلالية </label>
-                <input data-role="tagsinput" id="tags-input" value="jQuery,Script,Net" class="form-control"  name="keywords" required />
-              </div>
+          @if( count($p->postnotes) == 0 )
+          <div class="alert alert-success">
+          لا توجد ملاحظات
+          </div>
+          @else
+                @foreach( $p->postnotes as $pn)
+                <div class="alert alert-success">
+                  
+                  {{ $pn->notes }}
+                </div>
+              @endforeach
+          @endif
+             
               
-              <div class="mb-3">
-                <label  class="form-label">تصنيف المقالة </label>
-                <select name="category" class="form-control">
-                  @foreach($categories as $c)
-                  <option value="{{ $c->id }}">{{ $c->title }}</option>
-                  @endforeach
-                </select>
-              </div>
-              <button type="submit" class="btn btn-primary">الحفظ</button>
-            </form>
         </div>
         
       </div>
     </div>
   </div>
+  @endforeach
 @endsection
 

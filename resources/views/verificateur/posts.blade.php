@@ -125,6 +125,8 @@
                                         <a class="btn btn-success" href="{{ route('ShowEditPost',['id'=> $p->id ]) }}" title="تحديث المقالة"><i class="bi bi-pencil-square"></i> </a>
                                         <a class="btn btn-dark" href="{{ route('SendPostToShare',['id'=> $p->id ]) }}" title="أرسل للنشر"><i class="bi bi-arrow-left-circle"></i> </a>
                                         @endif
+                                        <a class="btn btn-info text-white" data-bs-toggle="modal" data-bs-target="#postNotes{{$p->id}}" title="إقرأ الملاحظات"  ><i class="bi bi-book-fill"></i> </a>
+                        
                             </td>
                         </tr>
 
@@ -143,5 +145,34 @@
     <hr />
 
     </div>
-
+    @foreach ($posts as $p)
+    <!-- Modal -->
+    <div class="modal  fade" id="postNotes{{$p->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title"> ملاحظات المدقق </h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              @if( count($p->postnotes) == 0 )
+              <div class="alert alert-success">
+              لا توجد ملاحظات
+              </div>
+              @else
+                    @foreach( $p->postnotes as $pn)
+                    <div class="alert alert-success">
+                      
+                      {{ $pn->notes }}
+                    </div>
+                  @endforeach
+              @endif
+                 
+                  
+            </div>
+            
+          </div>
+        </div>
+      </div>
+      @endforeach
 @endsection

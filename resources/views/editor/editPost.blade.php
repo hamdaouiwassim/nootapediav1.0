@@ -24,7 +24,7 @@
         <div class="conatiner p-4">
 
 
-            <h5 class="modal-title text-center">تحديث مقالة </h5>
+            <h5 class="modal-title text-center">تحديث مقالة <span class="text-primary">" {{ $post->title }} "</span></h5>
             <hr />
 
         

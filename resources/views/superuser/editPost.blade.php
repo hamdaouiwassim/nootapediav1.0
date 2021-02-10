@@ -24,7 +24,7 @@
         <div class="conatiner p-4">
 
 
-            <h5 class="modal-title text-center">تحديث مقالة </h5>
+            <h5 class="modal-title text-center">تحديث مقالة <span class="text-primary">" {{ $post->title }} "</span></h5>
             <hr />
 
         
@@ -59,7 +59,9 @@
                         
                       <option @if($post->stat == "saved") selected @endif value="saved">مسودة</option>
                       <option @if($post->stat == "published") selected @endif value="published">منشورة</option>
-                      <option @if($post->stat == "trashed") selected @endif value="trashed">محذوفة</option>
+                      <option @if($post->stat == "refused") selected @endif value="refused">إعادة التثبت</option>
+                      <option @if($post->stat == "reviewed") selected @endif value="trashed">تمّت المراجعة</option>
+                      <option @if($post->stat == "inreview") selected @endif value="trashed">في طور المراجعة</option>
                     </select>
                   </div>
                 <div class="mb-3">
