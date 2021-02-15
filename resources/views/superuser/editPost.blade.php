@@ -60,8 +60,8 @@
                       <option @if($post->stat == "saved") selected @endif value="saved">مسودة</option>
                       <option @if($post->stat == "published") selected @endif value="published">منشورة</option>
                       <option @if($post->stat == "refused") selected @endif value="refused">إعادة التثبت</option>
-                      <option @if($post->stat == "reviewed") selected @endif value="trashed">تمّت المراجعة</option>
-                      <option @if($post->stat == "inreview") selected @endif value="trashed">في طور المراجعة</option>
+                      <option @if($post->stat == "reviewed") selected @endif value="reviewed">تمّت المراجعة</option>
+                      <option @if($post->stat == "inreview") selected @endif value="inreview">في طور المراجعة</option>
                     </select>
                   </div>
                 <div class="mb-3">

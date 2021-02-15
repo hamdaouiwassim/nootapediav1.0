@@ -69,6 +69,9 @@
                             <a class="nav-link" href="/sharewithus"><i class="bi bi-share-fill"></i> شارك مقالتك </a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="/team"><i class="bi bi-people-fill"></i> فريق العمل  </a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="/search"><i class="bi bi-search"></i> البحث </a>
                         </li>
                     
@@ -90,6 +93,7 @@
                 <p class="text-center p-4">
                     <a href="https://www.instagram.com/nootapedia" target="_blank"class="btn btn-outline-secondary text-white"><i class="bi bi-instagram"></i></a>
                     <a href="https://www.facebook.com/nootapedia" target="_blank"class="btn btn-outline-secondary text-white"><i class="bi bi-facebook"></i></a>
+                    <a href="https://www.youtube.com/channel/UC-go6AWhZuxnLFC_UKDFWlw" target="_blank"class="btn btn-outline-secondary text-white"><i class="bi bi-youtube"></i></a>
                 </p>
             <hr>
             <p class="text-center">

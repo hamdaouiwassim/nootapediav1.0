@@ -5,6 +5,7 @@ use App\Post;
 use App\Category;
 use Illuminate\Http\Request;
 use Str;
+use App\User;
 class GuestController extends Controller
 {
     //
@@ -176,6 +177,11 @@ $categories = Category::all();
       
         //dd($category);
         return view('category')->with('category',$category)->with('posts',$posts)->with('categories',$categories);
+    }
+    public function Team(){
+        $categories = Category::all();
+        $team = User::whereIn('role',['editor','verificateur'])->get();
+        return view('team')->with('team',$team)->with('categories',$categories);
     }
 }
 

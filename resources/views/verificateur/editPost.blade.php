@@ -62,10 +62,7 @@
                     </select>
                 </div>
 
-                <div class="mb-3">
-                    <label  class="form-label"> ملاحظات عن المقالة </label>
-                    <textarea  class="form-control"  name="meta_description"  >{{ $post->meta_description }}</textarea>
-                  </div>
+                
                 <button type="submit" class="btn btn-primary">الحفظ</button>
                 
                 <a data-bs-toggle="modal" data-bs-target="#remarquesModal"  class="btn btn-danger">أعد المقالة للكاتب</a>

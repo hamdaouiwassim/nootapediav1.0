@@ -40,10 +40,13 @@
                             <a class="nav-link" href="{{ route('dashboardPostsInReviewUser') }}"><i class="bi bi-file-earmark-font-fill"></i> في طور المراجعة</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('dashboardPostsReviewedUser') }}"><i class="bi bi-file-earmark-check-fill"></i> تمّت المراجعة</a>
+                            <a class="nav-link" href="{{ route('dashboardPostsReviewedUser') }}"><i class="bi bi-spellcheck"></i> تمّت المراجعة</a>
                         </li>
                          <li class="nav-item">
                             <a class="nav-link" href="{{ route('dashboardposts') }}"><i class="bi bi-file-check-fill"></i> مقالات</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('ShowProfile') }}"><i class="bi bi-person-square"></i> حسابي </a>
                         </li>
                         
                         
@@ -52,12 +55,15 @@
 
                     <div class="ms-auto">
                       
-                          
+                        <a class="btn btn-secondary" title="يمكنك المطالبة بالسحب بداية من 40 دينار">
+                            <i class="bi bi-trophy-fill"></i>
+                             ( {{ Auth::user()->solde }} دينار )
+                    </a>
                                 <a class="btn btn-secondary" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
                                               document.getElementById('logout-form').submit();">
-                                              <i class="bi bi-door-closed-fill"></i>
-                                 الخروج
+                                              <i class="bi bi-power"></i>
+                                
                              </a>
 
                              <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -86,6 +92,7 @@
                 <p class="text-center p-4">
                     <a href="https://www.instagram.com/nootapedia" target="_blank"class="btn btn-outline-secondary text-white"><i class="bi bi-instagram"></i></a>
                     <a href="https://www.facebook.com/nootapedia" target="_blank"class="btn btn-outline-secondary text-white"><i class="bi bi-facebook"></i></a>
+                    <a href="https://www.youtube.com/channel/UC-go6AWhZuxnLFC_UKDFWlw" target="_blank"class="btn btn-outline-secondary text-white"><i class="bi bi-youtube"></i></a>
                 </p>
             <hr>
             <p class="text-center">

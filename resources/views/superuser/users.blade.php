@@ -56,7 +56,7 @@
                                 {{ $u->email }}
                                     
                             </td>
-                            <td></td>
+                            <td>{{ $u->phone }}</td>
                             <td>{{ $u->role }}</td>
                             <td>
                                 
@@ -130,7 +130,10 @@
                       <option value="verificateur"  >مدقق</option>
                     </select>
                 </div>
-                
+                <div class="mb-3">
+                  <label  class="form-label"> وصف الكاتب</label>
+                  <textarea name="description" class="form-control" ></textarea>
+                </div>
                
                 <button type="submit" class="btn btn-primary">الحفظ</button>
               </form>
@@ -169,7 +172,11 @@
                 </div>
                 <div class="mb-3">
                   <label  class="form-label">كلمة المرور </label>
-                  <input type="password" class="form-control" name="password" ">
+                  <input type="password" class="form-control" name="password" >
+                </div>
+                <div class="mb-3">
+                  <label  class="form-label"> وصف الكاتب</label>
+                  <textarea name="description" class="form-control" >{{ $u->description }}</textarea>
                 </div>
                 <div class="mb-3">
                   <label  class="form-label">النوع  </label>

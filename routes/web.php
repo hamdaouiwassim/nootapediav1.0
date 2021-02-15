@@ -67,3 +67,7 @@ Route::get('/dashboard/categories', 'DashboardController@categories')->name('das
 Route::get('/dashboard/category/delete/{id}', 'CategoryController@destroy')->name('DeleteCategorie');
 Route::post('/dashboard/category/add', 'CategoryController@store')->name('AddCategory');
 Route::post('/dashboard/category/edit', 'CategoryController@update')->name('EditCategory');
+
+Route::get('/dashboard/me', 'UserController@ShowProfile')->name('ShowProfile');
+Route::post('/dashboard/me/edit', 'UserController@MeUpdate')->name('EditUserInfo');
+Route::get('/team', 'GuestController@Team')->name('Team');

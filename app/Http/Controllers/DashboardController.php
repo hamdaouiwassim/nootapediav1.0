@@ -174,7 +174,10 @@ class DashboardController extends Controller
         
     $post = Post::find($idpost);
     $post->stat = "reviewed";
-    $post->update();
+    if ( $post->update() ){
+        $post->user->solde = $post->user->solde + 8 ;
+        $post->user->update();
+    }
     return redirect('dashboard/posts');
     }
    public function PostsInReview(){

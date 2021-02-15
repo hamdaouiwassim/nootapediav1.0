@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Post;
 use Hash;
-
+use Auth;
+use File;
 class UserController extends Controller
 {
     /**
@@ -92,6 +93,7 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->phone = $request->telephone;
         $user->role = $request->role;
+        $user->description = $request->description;
         if ($request->password){
             $user->password = Hash::make($request->password);
         }
@@ -129,5 +131,70 @@ class UserController extends Controller
         else{
             return redirect()->back()->with('error',"لم يتم حذف المستخدم ");
         }
+    }
+    
+
+    public function MeUpdate(Request $request)
+    {
+        //
+        $user = Auth::user();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->phone = $request->telephone;
+        if ( $request->file('avatar') ){
+            
+            // Check file size
+            if ($request->file('avatar')->getSize() > 1000000) {
+                return redirect()->back()->with('error',"حجم الصورة يجب أن لا يتجاوز 1 ميغابات");
+               
+                
+            }
+            
+            // Allow certain file formats
+            if($request->file('avatar')->getMimeType() != "jpg" && $request->file('avatar')->getMimeType() != "png" && $request->file('avatar')->getMimeType() != "jpeg"
+             ) {
+                return redirect()->back()->with('error'," الصورة المقبولة يجب أن تكون بالإمتداد التالي : JPG, JPEG, PNG ");
+               
+              
+            }
+            if ($user->avatar){
+                $image_path = base_path("public\uploads\users\images\\$user->avatar");
+                //dd($image_path);
+        
+                if (File::exists($image_path)) {
+                    
+                    unlink($image_path);
+                }
+            }
+           
+            $newname = uniqid().".".$request->file('avatar')->getClientOriginalExtension();
+                
+            //Move Uploaded File
+            $destinationPath = 'uploads/users/images';
+            $request->file('avatar')->move($destinationPath,$newname);
+            $user->avatar = $newname;
+        }
+        if ($request->password){
+            if($request->password != $request->rpassword ){
+                return redirect()->back()->with('error',"كلمات المرور غير متطابقة");
+            }
+            $user->password = Hash::make($request->password);
+        }
+      
+        if ( $user->update() ) {
+            return redirect()->back()->with('success',"تمت تحديث بيانات المستخدم ");
+        }else{
+            return redirect()->back()->with('error',"لم تتم تحديث بيانات المستخدم ");
+        }
+    }
+    public function ShowProfile(){
+                if(Auth::user()->role == "admin"){
+                    return view('superuser.profile');
+
+                }elseif(Auth::user()->role == "editor"){
+                    return view('editor.profile');
+                }else{
+                   return view('verificateur.profile'); 
+                }
     }
 }
