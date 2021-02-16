@@ -151,7 +151,7 @@ class UserController extends Controller
             }
             
             // Allow certain file formats
-            if($request->file('avatar')->getMimeType() != "jpg" && $request->file('avatar')->getMimeType() != "png" && $request->file('avatar')->getMimeType() != "jpeg"
+            if($request->file('avatar')->getClientOriginalExtension() != "jpg" && $request->file('avatar')->getClientOriginalExtension() != "png" && $request->file('avatar')->getClientOriginalExtension() != "jpeg"
              ) {
                 return redirect()->back()->with('error'," الصورة المقبولة يجب أن تكون بالإمتداد التالي : JPG, JPEG, PNG ");
                

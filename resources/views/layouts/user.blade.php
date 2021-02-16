@@ -54,7 +54,7 @@
                                 @foreach($categories as $category)
                                 @php $i++; @endphp
                                 
-                              <li><a class="dropdown-item" href="{{ Route('CategoryPost',['name'=> $category->name ])}}">{{ $category->name }}</a></li>
+                              <li><a class="dropdown-item" href="{{ Route('CategoryPost',['id'=> $category->id ,'name'=>$category->slug]) }}">{{ $category->name }}</a></li>
                               @if( $i != count($categories)) <li><hr class="dropdown-divider"></li> @endif
                               @endforeach
                             </ul>
@@ -68,9 +68,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/sharewithus"><i class="bi bi-share-fill"></i> شارك مقالتك </a>
                         </li>
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a class="nav-link" href="/team"><i class="bi bi-people-fill"></i> فريق العمل  </a>
-                        </li>
+                        </li> --}}
                         <li class="nav-item">
                             <a class="nav-link" href="/search"><i class="bi bi-search"></i> البحث </a>
                         </li>

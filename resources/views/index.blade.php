@@ -1,9 +1,6 @@
 @extends('layouts.user',array('categories',$categories))
 @section('title',' الصفحة الرئيسية')
-@section('MetaDescription'," منصة عربية تثقيفية هدفها إثراء المحتوى العربي على
-الأنترنت من خلال مقالات و بحوث و أراء في العديد من المجالات , التاريخ , العلوم , تكنولوجيا , الأدب و
-الفنّ
-... يوفر الموقع خاصيّة الاستماع للمقالات صوتيا .")
+@section('MetaDescription'," منصة عربية هدفها إثراء المحتوى العربي على الأنترنت من خلال مقالات وبحوث وأراء في العديد من المجالات، التاريخ، العلوم، تكنولوجيا، الأدب والفنّ مع خاصيّة الإستماع الصوتي للمقالات")
 @section('content')
  <!-- posts -->
  <div class="container mt-5 pt-5 mb-5">
@@ -27,7 +24,7 @@
                         <div class="card-body">
 
 
-                            <h3 class="card-title" style="color:#2c3e50">{{ $post->title }}</h3>
+                            <h1 style="font-size:1.5rem;color:#002E63" class="card-title" >{{ $post->title }}</h1>
                             <hr />
                             <div class="card-text">
                                {{ $post->content }}
@@ -36,7 +33,7 @@
                             <hr />
 
 
-                            <p class="card-text text-end"><a href="{{ route('showUserPost',[ 'id'=> $post->id ,'title'=> $post->title])}}" class="btn btn-secondary"> عرض
+                            <p class="card-text text-end"><a href="{{ route('showUserPost',[ 'id'=> $post->id ,'title'=> $post->slug ])}}" class="btn btn-secondary"> عرض
                                     المزيد ... </a></p>
                         </div>
                     </div>

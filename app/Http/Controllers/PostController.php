@@ -63,6 +63,7 @@ class PostController extends Controller
          
             $post = new Post();
             $post->title = $request->title;
+            $post->slug = $this->make_slug($request->title);
             $post->content = $request->content;
             $post->stat = "saved";
             //$post->keywords = $request->keywords;
@@ -152,9 +153,10 @@ class PostController extends Controller
         
      
         $post->title = $request->title;
+        $post->slug = $this->make_slug($request->title);
         $post->content = $request->content;
         
-        if (Auth::user()->role =="admin"){
+        if (Auth::user()->role =="admin" || Auth::user()->role =="verificateur"  ){
             if($request->stat){
                 $post->stat = $request->stat;
             }
@@ -246,5 +248,29 @@ class PostController extends Controller
         }else{
             return redirect()->back()->with('error',"لا تملك صلوحيّة الولوج الي هذه الصفحة ");
         }
+    }
+    //slugify arabic characters string function
+    public function make_slug($string, $separator = '-')
+    {
+    $string = trim($string);
+    $string = mb_strtolower($string, 'UTF-8');
+
+    // Make alphanumeric (removes all other characters)
+    // this makes the string safe especially when used as a part of a URL
+    // this keeps latin characters and Persian characters as well
+    $string = preg_replace("/[^a-z0-9_\s\-۰۱۲۳۴۵۶۷۸۹ويـءاآؤئبپتثجچحخدذرزژسشصضطظعغفقکكگگلمنوهیإلأةى ]/u", '', $string);
+
+    // Remove multiple dashes or whitespaces or underscores
+    $string = preg_replace("/[\s\-_]+/", ' ', $string);
+
+    // Convert whitespaces and underscore to the given separator
+    $string = preg_replace("/[\s_]+/", $separator, $string);
+    $arabic_punct = ['،', '؛', '؟', '⠐', '!'];
+
+    foreach ($arabic_punct as $punct) {
+            $string = preg_replace("#".mb_strtolower($punct, 'UTF-8')."#", '', $string);
+    }
+
+    return $string;
     }
 }

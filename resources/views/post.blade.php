@@ -9,7 +9,7 @@
     </div>
     <div class="container pt-2  mb-5  col-lg-8  col-md-12">
                 <div class="alert " style="background-color:#212529b8 !important; " >
-                    <h2 class="text-center text-white"> {{ $post->title }}</h2>
+                    <h1 class="text-center text-white" style="font-size:1.5rem"> {{ $post->title }}</h1>
                     
                 </div>
                 
@@ -21,7 +21,7 @@
                     <button class="btn btn-primary"><i class="bi bi-calendar-fill"></i> {{ $post->created_at->format('Y/m/d') }}</button>
                     <button class="btn btn-success"><i class="bi bi-eye-fill"></i> {{ $post->views }}</button>
                    
-                    <a href="{{ Route('CategoryPost',['name'=>$post->category->name]) }}" class="btn btn-danger"><i class="bi bi-tag-fill"></i> {{ $post->category->name }}</a>
+                    <a href="{{ Route('CategoryPost',['id'=> $post->category->id ,'name'=>$post->category->slug]) }}" class="btn btn-danger"><i class="bi bi-tag-fill"></i> {{ $post->category->name }}</a>
                     <div class="card text-center mt-3">
                         @if($post->soundfile)
                         <div class="card-header"> الإستماع صوتيّا الى المقال </div>

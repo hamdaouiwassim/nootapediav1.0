@@ -52,6 +52,7 @@ class CategoryController extends Controller
         //
         $category = new Category();
         $category->name = $request->name;
+        $category->slug = $this->make_slug($request->name);
         $category->description = $request->description;
 
         if ( $request->file('image') ){
@@ -108,6 +109,7 @@ class CategoryController extends Controller
         //
         $category = Category::find($request->idcategory);
         $category->name = $request->name;
+        $category->slug = $this->make_slug($request->name);
         $category->description = $request->description;
 
         if ( $request->file('image') ){
@@ -177,4 +179,28 @@ class CategoryController extends Controller
         return strlen($taglessBody);
 
     }
+     //slugify arabic characters string function
+     public function make_slug($string, $separator = '-')
+     {
+     $string = trim($string);
+     $string = mb_strtolower($string, 'UTF-8');
+ 
+     // Make alphanumeric (removes all other characters)
+     // this makes the string safe especially when used as a part of a URL
+     // this keeps latin characters and Persian characters as well
+     $string = preg_replace("/[^a-z0-9_\s\-۰۱۲۳۴۵۶۷۸۹ويـءاآؤئبپتثجچحخدذرزژسشصضطظعغفقکكگگلمنوهیإلأةى ]/u", '', $string);
+ 
+     // Remove multiple dashes or whitespaces or underscores
+     $string = preg_replace("/[\s\-_]+/", ' ', $string);
+ 
+     // Convert whitespaces and underscore to the given separator
+     $string = preg_replace("/[\s_]+/", $separator, $string);
+     $arabic_punct = ['،', '؛', '؟', '⠐', '!'];
+ 
+     foreach ($arabic_punct as $punct) {
+             $string = preg_replace("#".mb_strtolower($punct, 'UTF-8')."#", '', $string);
+     }
+ 
+     return $string;
+     }
 }

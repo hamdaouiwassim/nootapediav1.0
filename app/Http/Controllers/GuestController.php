@@ -151,12 +151,12 @@ $categories = Category::all();
         $categories = Category::all();
         return view('sharewithus')->with('categories',$categories);
     }
-    public function CategoryPosts($name){
+    public function CategoryPosts($id,$name){
         $categories = Category::all();
- //
+         //
         //dd($idcategory);
         
-        $category = Category::where('name',$name)->first();
+        $category = Category::find($id);
         $posts = $category->posts->where('stat','published');
         $lignes = count($posts);
        

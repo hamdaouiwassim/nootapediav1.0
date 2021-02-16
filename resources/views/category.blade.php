@@ -31,7 +31,7 @@
                         <div class="card-body">
 
 
-                            <h3 class="card-title" style="color:#2c3e50">{{ $post->title }}</h3>
+                            <h1 style="font-size:1.5rem;color:#002E63" class="card-title" >{{ $post->title }}</h1>
                             <hr />
                             <div class="card-text">
                                {!! $post->content !!}
@@ -40,7 +40,7 @@
                             <hr />
 
 
-                            <p class="card-text text-end"><a href="{{ route('showUserPost',[ 'id'=> $post->id ,'title'=> $post->title])}}" class="btn btn-secondary"> عرض
+                            <p class="card-text text-end"><a href="{{ route('showUserPost',[ 'id'=> $post->id ,'title'=> $post->slug])}}" class="btn btn-secondary"> عرض
                                     المزيد ... </a></p>
                         </div>
                     </div>

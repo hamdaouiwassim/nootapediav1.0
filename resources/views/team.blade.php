@@ -16,11 +16,11 @@
         </p>
     <div class="row">
         @foreach ($team as $user)
-            <div class="col-lg-4 col-md-6">
+            <div class="col-lg-4 col-md-6 mt-3">
                 <div class="card">
-                    <img src="@if($user->avatar) {{ asset('uploads/users/images') }}/{{ $user->avatar }} @else {{ asset('uploads/users/images/user.png') }} @endif" class="card-img-top"
+                    <img  style="height:200px" src="@if($user->avatar) {{ asset('uploads/users/images') }}/{{ $user->avatar }} @else {{ asset('uploads/users/images/user.png') }} @endif" class="card-img-top img-thumbnail"
                         alt="{{ $user->name }}">
-                        <h3 class="text-center">{{ $user->name  }}</h3>
+                        <h3 class="text-center mt-3">{{ $user->name  }}</h3>
                     <div class="card-body">
                         <p class="card-text">{{ $user->description }}</p>
                     </div>
