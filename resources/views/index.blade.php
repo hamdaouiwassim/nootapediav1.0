@@ -1,48 +1,118 @@
 @extends('layouts.user',array('categories',$categories))
-@section('title',' موسوعة عربية تثقيفية')
-@section('MetaDescription'," منصة عربية هدفها إثراء المحتوى العربي على الأنترنت من خلال مقالات وبحوث وأراء في العديد من المجالات، التاريخ، العلوم، تكنولوجيا، الأدب والفنّ مع خاصيّة الإستماع الصوتي للمقالات")
+@section('title', ' موسوعة عربية تثقيفية')
+@section('MetaDescription',
+    ' منصة عربية هدفها إثراء المحتوى العربي على الأنترنت من خلال مقالات وبحوث وأراء في العديد من
+    المجالات، التاريخ، العلوم، تكنولوجيا، الأدب والفنّ مع خاصيّة الإستماع الصوتي للمقالات')
 @section('content')
- <!-- posts -->
- <div class="container mt-5 pt-5 mb-5">
-    <div class="alert alert-secondary">
-        <h4>
-            <i class="bi bi-calendar2-check"></i> الأحدث
-        </h4>
-    </div>
-    <div class="row">
-
-        @foreach($posts as $post)
-        <div class="col-lg-6 col-md-12">
-            <div class="card mb-3">
-                <div class="row g-0">
-                    <div class="col-lg-6 col-md-12" style="border-radius:0 3px 3px 0;min-height:290px;background-image: url({{ asset('uploads/posts/images')}}/{{ $post->image  }});background-size:cover">
-                        
-
-                     
-                    </div>
+    <!-- posts -->
+    <div class="container mt-5 pt-5 mb-5">
+        <div class="alert alert-secondary">
+            <h4>
+                <i class="bi bi-calendar2-check"></i> الأحدث
+            </h4>
+        </div>
+        <div class="row">
+            @php $i=0; @endphp
+            @foreach ($posts as $post)
+                @if ($i < 4)
                     <div class="col-lg-6 col-md-12">
-                        <div class="card-body">
+                        <div class="card mb-3">
+                            <div class="row g-0">
+                                <div class="col-lg-6 col-md-12"
+                                    style="border-radius:0 3px 3px 0;min-height:290px;background-image: url({{ asset('uploads/posts/images') }}/{{ $post->image }});background-size:cover">
 
 
-                            <Strong style="font-size:1.2rem;color:#002E63" class="card-title" >{{ $post->title }}</Strong>
-                            <hr />
-                            <div class="card-text" >
-                                
-                               {{ $post->content }}
-                            
+
+                                </div>
+                                <div class="col-lg-6 col-md-12">
+                                    <div class="card-body">
+
+
+                                        <Strong style="font-size:1.2rem;color:#002E63"
+                                            class="card-title">{{ $post->title }}</Strong>
+                                        <hr />
+                                        <div class="card-text">
+
+                                            {{ $post->content }}
+
+                                        </div>
+                                        <p class="load-more card-text text-end"
+                                            style="position: absolute;bottom: 10px;left: 10px;"><a
+                                                href="{{ route('showUserPost', ['id' => $post->id, 'title' => $post->slug]) }}"
+                                                class="btn btn-secondary"> عرض
+                                                المزيد ... </a></p>
+                                    </div>
+                                </div>
                             </div>
-                            <p class="load-more card-text text-end" style="position: absolute;bottom: 10px;left: 10px;"><a href="{{ route('showUserPost',[ 'id'=> $post->id ,'title'=> $post->slug ])}}" class="btn btn-secondary"> عرض
-                                    المزيد ... </a></p>
                         </div>
                     </div>
+
+
+
+                @endif
+                @php $i++; @endphp
+            @endforeach
+            @if (count($posts) > 3 )
+            <div class="col-lg-6 col-md-12 p-2">
+                <div >
+                    
+                        @php $i=0; @endphp
+                        @foreach ($posts as $post)
+
+                        @if ($i >= 4 && $i < 8)
+                               <a style="text-decoration:none !important;" href="{{ route('showUserPost', ['id' => $post->id, 'title' => $post->slug]) }}" > <Strong style="font-size:1.2rem;color:#002E63;margin-bottom:30px;"
+                                        class="card-title">{{ $post->title }}</Strong></a><br />
+                                       <p style="margin-top:8px;font-size:18px;"> {{ $post->content }} </p><hr style="border: .5px solid #6c757d;margin-top:7px;" />
+                            @endif
+                            @php $i++; @endphp
+                        @endforeach
+                   
                 </div>
             </div>
-        </div>
-        @endforeach
+            @endif
+            @if (count($posts) > 7 )
+            <div class="col-lg-6 col-md-12 p-2">
+                <div >
+                    
+                        @php $i=0; @endphp
+                        @foreach ($posts as $post)
 
+                            @if ($i >= 8 && $i < 12 )
+                            <a style="text-decoration:none !important;" href="{{ route('showUserPost', ['id' => $post->id, 'title' => $post->slug]) }}" > <Strong style="font-size:1.2rem;color:#002E63;margin-bottom:30px;"
+                                class="card-title">{{ $post->title }}</Strong></a><br />
+                                       <p style="margin-top:8px;font-size:18px;"> {{ $post->content }} </p>
+                                       <hr style="border: .5px solid #6c757d;margin-top:7px;" />
 
+                            @endif
+                            @php $i++; @endphp
+                        @endforeach
+                    
+                </div>
+            </div>
+            @endif
+            @if (count($posts) > 11 )
+            
+                    
+                        @php $i=0; @endphp
+                        @foreach ($posts as $post)
+                        <div class="col-lg-6 col-md-12">
+                            <div class="col-12">
+                            @if ( $i == 12 || $i == 13 )
+                               <img src="{{ asset('uploads/posts/images') }}/{{ $post->image }}" alt="{{ $post->title }}"  class="img-hovred img-fluid img-thumbnail">
+                               
+                               
+                               <a href="{{ route('showUserPost', ['id' => $post->id, 'title' => $post->slug]) }}" class="btn btn-secondary loadmore-full-image" >{{ $post->title }} ... </a>
+                               
+                            @endif
+                            @php $i++; @endphp
+                        </div>
+                    </div>
+                        @endforeach
+                    
+            @endif   
+            {{ $posts->links() }}
 
-        {{-- <div class="col-6">
+            {{-- <div class="col-6">
             <div class="card mb-3">
                 <div class="row g-0">
                     <div class="col-lg-6 col-md-12">
@@ -293,26 +363,28 @@
                 </div>
             </div>
             </div>
-        </div>
-         --}}
-       
-      
+        </div> --}}
 
+
+
+
+        </div>
 
     </div>
 
-</div>
 
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P1CHPHZCDN"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
 
- <!-- Global site tag (gtag.js) - Google Analytics -->
- <script async src="https://www.googletagmanager.com/gtag/js?id=G-P1CHPHZCDN"></script>
- <script>
- window.dataLayer = window.dataLayer || [];
- function gtag(){dataLayer.push(arguments);}
- gtag('js', new Date());
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
 
- gtag('config', 'G-P1CHPHZCDN');
- </script>
+        gtag('config', 'G-P1CHPHZCDN');
+
+    </script>
 
 @endsection
-   

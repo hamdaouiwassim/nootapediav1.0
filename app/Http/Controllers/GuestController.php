@@ -10,7 +10,7 @@ class GuestController extends Controller
 {
     //
     public function index(){
-        $posts = Post::where('stat','published')->orderBy('published_at', 'DESC')->get();
+        $posts = Post::where('stat','published')->orderBy('published_at', 'DESC')->paginate(14);
 
 
 $categories = Category::all();
