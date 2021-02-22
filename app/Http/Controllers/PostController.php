@@ -157,6 +157,9 @@ class PostController extends Controller
         $post->content = $request->content;
         
         if (Auth::user()->role =="admin" || Auth::user()->role =="verificateur"  ){
+            if($request->note){
+                $post->note = $request->note;
+            }
             if($request->stat){
                 $post->stat = $request->stat;
             }

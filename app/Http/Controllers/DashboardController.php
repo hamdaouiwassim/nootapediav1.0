@@ -30,7 +30,7 @@ class DashboardController extends Controller
             $categories = Category::all();
             $users = User::all();
             return view('superuser.index')->with('posts',count($posts))->with('categories',count($categories))->with('users',count($users));
-        }elseif (Auth::user()->role == 'editor'){
+        }elseif (Auth::user()->role == 'editor' ||  Auth::user()->role == 'consulteur'){
             $posts = Post::all();
             $categories = Category::all();
             $users = User::all();
@@ -174,8 +174,11 @@ class DashboardController extends Controller
         
     $post = Post::find($idpost);
     $post->stat = "reviewed";
+    $post->idverificateur = Auth::user()->id  ;
+    $post->verificateur_name = Auth::user()->name ;
     if ( $post->update() ){
         $post->user->solde = $post->user->solde + 8 ;
+      
         $post->user->update();
     }
     return redirect('dashboard/posts');

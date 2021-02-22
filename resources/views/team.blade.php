@@ -1,5 +1,6 @@
 @extends('layouts.user',array('categories',$categories))
 @section('title', 'فريق العمل')
+@section('MetaDescription',"فريق العمل")
 @section('content')
     <!-- posts -->
 

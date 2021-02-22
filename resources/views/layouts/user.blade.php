@@ -26,7 +26,7 @@
     <div id="app">
         <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
-                <a class="navbar-brand" style="margin-right:70px;"  href="/">نوتابيديا</a>
+                <a class="navbar-brand mx-auto" style="padding-right:70px;"  href="/"> <img src="{{ asset('uploads/Logo-nootapedia-white.png') }}" alt="Nootapedia" style="height:40px"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -68,16 +68,18 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/sharewithus"><i class="bi bi-share-fill"></i> شارك مقالتك </a>
                         </li>
-                        {{-- <li class="nav-item">
+                        <li class="nav-item">
                             <a class="nav-link" href="/team"><i class="bi bi-people-fill"></i> فريق العمل  </a>
-                        </li> --}}
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/search"><i class="bi bi-search"></i> البحث </a>
                         </li>
                     
                     </ul>
                    
+                   
                 </div>
+                
             </div>
         </nav>
         <main>
@@ -85,16 +87,22 @@
         </main>
         <!-- footer -->
         <footer class="bg-dark p-4 text-white">
-            <p class="text-center"> نوتابيديا </p>
-            <p class="text-center" style="width:60%;margin:0 auto"> منصة عربية تثقيفية هدفها إثراء المحتوى العربي على
+            <p class="text-center"> <img src="{{ asset('uploads/Logo-nootapedia-white.png') }}" alt="Nootapedia" style="height: 70px;" > </p>
+            <p class="text-center" style="width:80%;margin:0 auto;font-size:1.2rem"> منصة عربية تثقيفية هدفها إثراء المحتوى العربي على
                 الأنترنت من خلال مقالات و بحوث و أراء في العديد من المجالات , التاريخ , العلوم , تكنولوجيا , الأدب و
                 الفنّ
                 ... يوفر الموقع خاصيّة الاستماع للمقالات صوتيا . </p>
                 <p class="text-center p-4">
-                    <a href="https://www.instagram.com/nootapedia" target="_blank"class="btn btn-outline-secondary text-white"><i class="bi bi-instagram"></i></a>
-                    <a href="https://www.facebook.com/nootapedia" target="_blank"class="btn btn-outline-secondary text-white"><i class="bi bi-facebook"></i></a>
-                    <a href="https://www.youtube.com/channel/UC-go6AWhZuxnLFC_UKDFWlw" target="_blank"class="btn btn-outline-secondary text-white"><i class="bi bi-youtube"></i></a>
+                    <a href="https://www.instagram.com/nootapedia" target="_blank" class="btn btn-outline-secondary text-white"><i class="bi bi-instagram"></i></a>
+                    <a href="https://www.facebook.com/nootapedia" target="_blank" class="btn btn-outline-secondary text-white"><i class="bi bi-facebook"></i></a>
+                    <a href="https://www.youtube.com/channel/UC-go6AWhZuxnLFC_UKDFWlw" target="_blank" class="btn btn-outline-secondary text-white"><i class="bi bi-youtube"></i></a>
                 </p>
+            <hr>
+            <p class="text-center p-2">
+                <a href="{{ route('Privacy') }}" class="text-white" style="font-size: 14px;text-decoration:none;">سياسة الخصوصية</a> |
+                <a href="https://www.nootapedia.com/sitemap.xml" class="text-white" style="font-size: 14px;text-decoration:none;">خريطة الموقع</a>
+            </p>
+           
             <hr>
             <p class="text-center">
                 <span style="font-size: 12px;"> كل الحقوق محفوظة لنوتابيديا - 2020 | محتوانا مقدم للجميع فالمرجو إحترامه

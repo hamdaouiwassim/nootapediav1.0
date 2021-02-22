@@ -1,5 +1,6 @@
 @extends('layouts.user',array('categories',$categories))
 @section('title',' البحث')
+@section('MetaDescription',"البحث")
 @section('content')
     <!-- posts -->
 

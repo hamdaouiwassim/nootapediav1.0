@@ -25,6 +25,7 @@ Route::get('/sharewithus','GuestController@sharewithus')->name('sharewithus');
 Route::get('/post/{id}/{title}/','GuestController@ShowUserPost')->name('showUserPost'); 
 Route::get('/search','GuestController@ShowSearch')->name('ShowSearch');
 Route::get('/category/{id}/{name}','GuestController@CategoryPosts')->name('CategoryPost');
+Route::get('/privacy','GuestController@Privacy')->name('Privacy');
 Route::post('/search','GuestController@search')->name('Search');
 Auth::routes();
 

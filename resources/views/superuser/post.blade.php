@@ -20,7 +20,7 @@
             <div class="col-12">                
                     <button class="btn btn-primary"><i class="bi bi-calendar-fill"></i> {{ $post->created_at->format('Y/m/d') }}</button>
                     <button class="btn btn-success"><i class="bi bi-eye-fill"></i> {{ $post->views }}</button>
-                    <a href="{{ Route('CategoryPost',['name'=>$post->category->name]) }}" class="btn btn-danger"><i class="bi bi-tag-fill"></i> {{ $post->category->name }}</a>
+                    <a href="{{ Route('CategoryPost',['id'=> $post->category->id ,'name'=>$post->category->name]) }}" class="btn btn-danger"><i class="bi bi-tag-fill"></i> {{ $post->category->name }}</a>
                     <div class="card text-center mt-3">
                         @if($post->soundfile)
                         <div class="card-header"> الإستماع صوتيّا الى المقال </div>

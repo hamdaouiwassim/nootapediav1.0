@@ -22,8 +22,9 @@
                     <button class="btn btn-success"><i class="bi bi-eye-fill"></i> {{ $post->views }}</button>
                    
                     <a href="{{ Route('CategoryPost',['id'=> $post->category->id ,'name'=>$post->category->slug]) }}" class="btn btn-danger"><i class="bi bi-tag-fill"></i> {{ $post->category->name }}</a>
+                    @if($post->soundfile)
                     <div class="card text-center mt-3">
-                        @if($post->soundfile)
+                     
                         <div class="card-header"> الإستماع صوتيّا الى المقال </div>
                         <div class="card-body" style="text-align: center !important">
                             <audio controls="">
@@ -34,23 +35,34 @@
                             </audio>
 
                         </div>
-                        @endif
+                       
                     </div>
+                    @endif
             </div>
-        <div class="col-12 text-center">
+        <div class="col-12 text-center mt-2">
             <img src="{{ asset('uploads/posts/images')}}/{{ $post->image }}" alt="{{ $post->title }}" class="img-fluid img-thumbnail">
 
         </div>
             <div class="col-12 pt-5" >
-            <p style="font-size:1.4rem">
+                    <p style="font-size:1.4rem;margin-bottom:70px;" >
                     {!! nl2br(e($post->content)) !!}
                     </p>
-        
-            
-               
+                   
+                   
              </div>
+             <div class="alert alert-secondary" role="alert">
+                <h4 ><i class="bi bi-person-square"></i> إعداد و كتابة المقال :<span class="text-success"> {{ $post->user->name }} <span></h4>
+                @if($post->verificateur_name)
+                <hr />
+                <h4 ><i class="bi bi-person-bounding-box"></i> تدقيق المقال : <span class="text-success"> {{ $post->verificateur_name }} <span> </h4>
+               @endif
+               @if($post->soundfile)
+               <hr />
+               <h4 ><i class="bi bi-file-earmark-music-fill"></i> الأداء الصوتي : <span class="text-success"> حمداوي وسيم <span> </h4>
+               @endif
+              </div>
              <div class="alert alert-secondary mt-3 mr-2 ml-2">
-                 رأيك يستحقّ أن يسمعه الأخرون ... إترك تعليقك ليعرف العالم من أنت 
+                 رأيك يستحقّ أن يسمعه الأخرون ... أترك تعليقك ليعرف العالم من أنت 
              </div>
             <div class="fb-comments col-12" data-href="{{ url()->current() }}" data-width="100%" data-numposts="5"></div>
         </div>

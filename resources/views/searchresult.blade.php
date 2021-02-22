@@ -1,5 +1,6 @@
 @extends('layouts.user',array('categories',$categories))
-
+@section('title','نتائج البحث')
+@section('MetaDescription',"نتائج البحث")
 @section('content')
  <!-- posts -->
  <div class="container mt-5 pt-5 mb-5">

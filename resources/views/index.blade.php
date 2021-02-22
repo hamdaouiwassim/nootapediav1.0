@@ -1,5 +1,5 @@
 @extends('layouts.user',array('categories',$categories))
-@section('title',' الصفحة الرئيسية')
+@section('title',' موسوعة عربية تثقيفية')
 @section('MetaDescription'," منصة عربية هدفها إثراء المحتوى العربي على الأنترنت من خلال مقالات وبحوث وأراء في العديد من المجالات، التاريخ، العلوم، تكنولوجيا، الأدب والفنّ مع خاصيّة الإستماع الصوتي للمقالات")
 @section('content')
  <!-- posts -->
@@ -15,7 +15,7 @@
         <div class="col-lg-6 col-md-12">
             <div class="card mb-3">
                 <div class="row g-0">
-                    <div class="col-lg-6 col-md-12" style="border-radius:0 3px 3px 0;min-height:200px;background-image: url({{ asset('uploads/posts/images')}}/{{ $post->image  }});background-size:cover">
+                    <div class="col-lg-6 col-md-12" style="border-radius:0 3px 3px 0;min-height:290px;background-image: url({{ asset('uploads/posts/images')}}/{{ $post->image  }});background-size:cover">
                         
 
                      
@@ -24,16 +24,14 @@
                         <div class="card-body">
 
 
-                            <h1 style="font-size:1.5rem;color:#002E63" class="card-title" >{{ $post->title }}</h1>
+                            <Strong style="font-size:1.2rem;color:#002E63" class="card-title" >{{ $post->title }}</Strong>
                             <hr />
-                            <div class="card-text">
+                            <div class="card-text" >
+                                
                                {{ $post->content }}
+                            
                             </div>
-
-                            <hr />
-
-
-                            <p class="card-text text-end"><a href="{{ route('showUserPost',[ 'id'=> $post->id ,'title'=> $post->slug ])}}" class="btn btn-secondary"> عرض
+                            <p class="load-more card-text text-end" style="position: absolute;bottom: 10px;left: 10px;"><a href="{{ route('showUserPost',[ 'id'=> $post->id ,'title'=> $post->slug ])}}" class="btn btn-secondary"> عرض
                                     المزيد ... </a></p>
                         </div>
                     </div>

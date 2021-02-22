@@ -10,7 +10,7 @@ class GuestController extends Controller
 {
     //
     public function index(){
-        $posts = Post::where('stat','published')->orderBy('created_at', 'DESC')->get();
+        $posts = Post::where('stat','published')->orderBy('published_at', 'DESC')->get();
 
 
 $categories = Category::all();
@@ -77,7 +77,7 @@ $categories = Category::all();
                 ->where('idcategory',$category)
                 ->where('created_at',$date)
                 ->where('stat','published')
-                ->get();
+                ->orderBy('published_at', 'DESC')->get();
 
             }else{
                 //echo "category vide";
@@ -86,7 +86,7 @@ $categories = Category::all();
                 ->Orwhere('content','Like','%'.$keywords.'%')
                 ->where('created_at',$date)
                 ->where('stat','published')
-                ->get();
+                ->orderBy('published_at', 'DESC')->get();
             }
             
         }else{
@@ -100,7 +100,7 @@ $categories = Category::all();
                 ->Orwhere('content','Like','%'.$keywords.'%')
                 ->where('idcategory',$category)
                 ->where('stat','published')
-                ->get();
+                ->orderBy('published_at', 'DESC')->get();
 
             }else{
                 //echo "category vide";
@@ -108,7 +108,7 @@ $categories = Category::all();
                 ->where('title','Like','%'.$keywords.'%')
                 ->Orwhere('content','Like','%'.$keywords.'%')
                 ->where('stat','published')
-                ->get();
+                ->orderBy('published_at', 'DESC')->get();
             }
           
         }
@@ -141,7 +141,10 @@ $categories = Category::all();
         $categories = Category::all();
         return view('about')->with('categories',$categories);
     }
-
+    public function Privacy(){
+        $categories = Category::all();
+        return view('privacy')->with('categories',$categories);
+    }
     public function contact(){
         $categories = Category::all();
         return view('contact')->with('categories',$categories);
@@ -157,7 +160,7 @@ $categories = Category::all();
         //dd($idcategory);
         
         $category = Category::find($id);
-        $posts = $category->posts->where('stat','published');
+        $posts = $category->posts->where('stat','published')->sortByDesc('published_at');
         $lignes = count($posts);
        
        

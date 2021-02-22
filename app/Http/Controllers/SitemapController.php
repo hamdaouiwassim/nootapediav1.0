@@ -40,6 +40,7 @@ class SitemapController extends Controller
         $pages[2]["url"] = url("/sharewithus");
         $pages[3]["url"] = url("/contact");
         $pages[4]["url"] = url("/");
+        $pages[4]["url"] = url("/team");
 
       return response()->view('sitemap.pages', [
          'pages' => $pages,
