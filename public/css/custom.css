@@ -111,15 +111,7 @@ background-color: #428bca;
 }
 
 
-.loadmore-full-image{
-    position: relative; 
-    right:35%;
-    top:-220px;
-}
-.img-hovred{
-    transition-property: -moz-filter, -ms-filter, -o-filter, -webkit-filter, filter;
-    transition-duration: 1s;
-}
+
 .img-hovred:hover{
     filter: grayscale(60%);
 } @media screen and (max-width:992px){
@@ -149,15 +141,7 @@ background-color: #428bca;
 
    
 } */
-@media screen and (max-width:576px){
-   .loadmore-full-image{
-       position: relative; 
-       right:30% !important;
-       top:-150px !important;
-      
-   }
-}
 
 .pagination{
     justify-content: center!important;
-}
+} 

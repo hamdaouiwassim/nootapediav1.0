@@ -98,10 +98,12 @@
                         <div class="col-lg-6 col-md-12">
                             <div class="col-12">
                             @if ( $i == 12 || $i == 13 )
-                               <img src="{{ asset('uploads/posts/images') }}/{{ $post->image }}" alt="{{ $post->title }}"  class="img-hovred img-fluid img-thumbnail">
+                            <a href="{{ route('showUserPost', ['id' => $post->id, 'title' => $post->slug]) }}" class="btn btn-secondary col-12 p-3" >{{ $post->title }} ... </a>
+                            <a href="{{ route('showUserPost', ['id' => $post->id, 'title' => $post->slug]) }}"  >
+                                 <img src="{{ asset('uploads/posts/images') }}/{{ $post->image }}" alt="{{ $post->title }}"  class="img-hovred img-fluid img-thumbnail">
+                            </a>
                                
                                
-                               <a href="{{ route('showUserPost', ['id' => $post->id, 'title' => $post->slug]) }}" class="btn btn-secondary loadmore-full-image" >{{ $post->title }} ... </a>
                                
                             @endif
                             @php $i++; @endphp
@@ -109,10 +111,12 @@
                     </div>
                         @endforeach
                     
-            @endif   
-            
+            @endif 
+        
+            <hr class="mt-3" />
+            <div class="p-3">
                 {{ $posts->links() }}
-            
+            </div>
             
 
             {{-- <div class="col-6">
