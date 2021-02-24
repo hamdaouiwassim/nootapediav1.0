@@ -15,22 +15,18 @@ class GuestController extends Controller
 
 $categories = Category::all();
 
-        $lignes = count($posts);
        
-       
-       if ( $lignes != 0 ) {
-           for( $c1 = 0 ; $c1 < $lignes ; $c1++ ){
-               
-                   $taglessBody = strip_tags($posts[$c1]->content);
-               //dd($taglessBody);
-               if ($taglessBody[100] != " ") {
-                       $posts[$c1]->content = Str::limit($taglessBody,$this->chercherSpace($taglessBody,100), ' ...');
-               }else{
-                   $posts[$c1]->content = Str::limit($taglessBody,100, ' ...');
-               }   
-               
-           }
-        }
+        foreach($posts as $post){
+            $taglessBody = strip_tags($post->content);
+        
+            if ($taglessBody[100] != " ") {
+           
+                    $post->content = Str::limit($taglessBody,$this->chercherSpace($taglessBody,100), ' ...');
+            }else{
+            
+                $post->content = Str::limit($taglessBody,100, ' ...');
+            }   
+   }
 
         return view('index')->with('posts',$posts)->with('categories',$categories);
     }
@@ -163,22 +159,18 @@ $categories = Category::all();
         $posts = $category->posts->where('stat','published')->sortByDesc('published_at');
         $lignes = count($posts);
        
-       
-       if ( $lignes != 0 ) {
-           for( $c1 = 0 ; $c1 < $lignes ; $c1++ ){
+       foreach($posts as $post){
+                $taglessBody = strip_tags($post->content);
+            
+                if ($taglessBody[100] != " ") {
                
-                   $taglessBody = strip_tags($posts[$c1]->content);
-               //dd($taglessBody);
-               if ($taglessBody[100] != " ") {
-                       $posts[$c1]->content = Str::limit($taglessBody,$this->chercherSpace($taglessBody,100), ' ...');
-               }else{
-                   $posts[$c1]->content = Str::limit($taglessBody,100, ' ...');
-               }   
-               
-           }
-        }
+                        $post->content = Str::limit($taglessBody,$this->chercherSpace($taglessBody,100), ' ...');
+                }else{
+                
+                    $post->content = Str::limit($taglessBody,100, ' ...');
+                }   
+       }
       
-        //dd($category);
         return view('category')->with('category',$category)->with('posts',$posts)->with('categories',$categories);
     }
     public function Team(){

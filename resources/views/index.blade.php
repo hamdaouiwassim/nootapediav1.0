@@ -53,7 +53,7 @@
                 @php $i++; @endphp
             @endforeach
             @if (count($posts) > 3 )
-            <div class="col-lg-6 col-md-12 p-2">
+            <div class="col-lg-6 col-md-12 p-2 pt-4 pb-4">
                 <div >
                     
                         @php $i=0; @endphp
@@ -71,7 +71,7 @@
             </div>
             @endif
             @if (count($posts) > 7 )
-            <div class="col-lg-6 col-md-12 p-2">
+            <div class="col-lg-6 col-md-12 p-2 pt-4 pb-4">
                 <div >
                     
                         @php $i=0; @endphp
@@ -110,7 +110,10 @@
                         @endforeach
                     
             @endif   
-            {{ $posts->links() }}
+            
+                {{ $posts->links() }}
+            
+            
 
             {{-- <div class="col-6">
             <div class="card mb-3">
