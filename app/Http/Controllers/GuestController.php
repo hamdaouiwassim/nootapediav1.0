@@ -39,7 +39,28 @@ $categories = Category::all();
             $post->update();
 
         }
-        return view('post')->with('post',$post)->with('categories',$categories);
+        $relatedposts = $post->category->posts->where('stat','published');
+        
+        $shuffled = $relatedposts->shuffle();
+        $shuffled = $shuffled->skip(0)->take(2);
+
+        
+
+
+        foreach($shuffled as $rpost){
+            
+            $taglessBody = strip_tags($rpost->content);
+        
+            if ($taglessBody[100] != " ") {
+           
+                    $rpost->content = Str::limit($taglessBody,$this->chercherSpace($taglessBody,100), ' ...');
+            }else{
+            
+                $rpost->content = Str::limit($taglessBody,100, ' ...');
+            }   
+        }
+        
+        return view('post')->with('post',$post)->with('categories',$categories)->with('related',$shuffled);
     }
     public function chercherSpace($taglessBody,$n){
         for( $i=$n; $i<=strlen($taglessBody); $i++ ){

@@ -74,4 +74,46 @@
     <div id="fb-root"></div>
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v9.0" nonce="apurE7hi"></script>
     
+    
+    <div class="col-12 row">
+        @foreach ($related as $rpost)
+       
+        <div class="col-lg-6 col-md-12 mb-5">
+                        <div class="card mb-3">
+                            <div class="row g-0">
+                                <div class="col-lg-6 col-md-12"
+                                    style="border-radius:0 3px 3px 0;min-height:290px;background-image: url({{ asset('uploads/posts/images') }}/{{ $rpost->image }});background-size:cover">
+
+
+
+                                </div>
+                                <div class="col-lg-6 col-md-12">
+                                    <div class="card-body">
+
+
+                                        <Strong style="font-size:1.2rem;color:#002E63"
+                                            class="card-title">{{ $rpost->title }}</Strong>
+                                        <hr />
+                                        <div class="card-text">
+
+                                            {{ $rpost->content }}
+
+                                        </div>
+                                        <p class="load-more card-text text-end"
+                                            style="position: absolute;bottom: 10px;left: 10px;"><a
+                                                href="{{ route('showUserPost', ['id' => $rpost->id, 'title' => $rpost->slug]) }}"
+                                                class="btn btn-secondary"> عرض
+                                                المزيد ... </a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+        @endforeach
+        
+       
+
+    </div>
 @endsection

@@ -285,4 +285,7 @@ class PostController extends Controller
 
     return $string;
     }
+
+
+    
 }
