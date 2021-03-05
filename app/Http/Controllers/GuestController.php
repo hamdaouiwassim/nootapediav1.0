@@ -39,10 +39,24 @@ $categories = Category::all();
             $post->update();
 
         }
-        $relatedposts = $post->category->posts->where('stat','published');
+        $relatedposts = $post->category->posts->where('stat','published')->where('id','!=',$post->id);
+        if (count($relatedposts) < 2 ){
+            if(count($relatedposts) == 0){
+                $posts = Post::where('id','!=',$post->id)->get();
+                $shuffled = $posts->shuffle();
+                $shuffled = $shuffled->skip(0)->take(2);
+            }else{
+                $posts = Post::where('id','!=',$post->id)->get();
+                $shuffled = $posts->shuffle();
+                $shuffled = $shuffled->skip(0)->take(1);
+            }
+
+        }else{
+            $shuffled = $relatedposts->shuffle();
+            $shuffled = $shuffled->skip(0)->take(2);
+        }
         
-        $shuffled = $relatedposts->shuffle();
-        $shuffled = $shuffled->skip(0)->take(2);
+      
 
         
 
