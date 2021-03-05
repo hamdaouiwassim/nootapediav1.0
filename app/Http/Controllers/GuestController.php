@@ -175,7 +175,7 @@ $categories = Category::all();
     }
     public function Team(){
         $categories = Category::all();
-        $team = User::whereIn('role',['editor','verificateur'])->get();
+        $team = User::whereIn('role',['editor','verificateur'])->where('verified',1)->get();
         return view('team')->with('team',$team)->with('categories',$categories);
     }
 }

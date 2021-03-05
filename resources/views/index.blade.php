@@ -95,9 +95,10 @@
                     
                         @php $i=0; @endphp
                         @foreach ($posts as $post)
+                        @if ( $i == 12 || $i == 13 )
                         <div class="col-lg-6 col-md-12">
-                            <div class="col-12">
-                            @if ( $i == 12 || $i == 13 )
+                            <div class="col-12 mb-2">
+                          
                             <a href="{{ route('showUserPost', ['id' => $post->id, 'title' => $post->slug]) }}" class="btn btn-secondary col-12 p-3" >{{ $post->title }} ... </a>
                             <a href="{{ route('showUserPost', ['id' => $post->id, 'title' => $post->slug]) }}"  >
                                  <img src="{{ asset('uploads/posts/images') }}/{{ $post->image }}" alt="{{ $post->title }}"  class="img-hovred img-fluid img-thumbnail">
@@ -105,15 +106,17 @@
                                
                                
                                
-                            @endif
-                            @php $i++; @endphp
+                            
+                           
                         </div>
                     </div>
+                    @endif
+                    @php $i++; @endphp
                         @endforeach
                     
             @endif 
         
-            <hr class="mt-3" />
+            <hr class="mt-3" style="border: .5px solid #6c757d;margin-top:7px;"  />
             <div class="p-3">
                 {{ $posts->links() }}
             </div>
@@ -380,18 +383,6 @@
     </div>
 
 
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P1CHPHZCDN"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-
-        gtag('config', 'G-P1CHPHZCDN');
-
-    </script>
+   
 
 @endsection

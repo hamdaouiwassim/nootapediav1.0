@@ -78,6 +78,11 @@
                     </select>
                 </div>
                 <div class="mb-3">
+                    <label class="form-label">تاريخ نشر المقالة </label>
+                    <input  class="form-control" type="date"
+                    name="published_at" value="{{ $post->published_at }}" />
+                </div>
+                <div class="mb-3">
                     <label  class="form-label">وصف الصفحة ( خاصّ بمحركات البحث ) </label>
                     <textarea  class="form-control"  name="meta_description" maxlength="155" >{{ $post->meta_description }}</textarea>
                   </div>

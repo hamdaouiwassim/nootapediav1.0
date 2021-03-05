@@ -2,9 +2,9 @@
 @section('title',  $category->name )
 @section('MetaDescription',  $category->description )
 @section('content')
- <!-- posts -->
- <div class="container mt-5 pt-5 mb-5">
-    <div class="alert alert-secondary text-center">
+@if($category->image)
+<div class="col-md-12 p-5 mt-5" style="background: url('{{ asset('uploads/categories/images')}}/{{ $category->image }}') no-repeat center center fixed;background-size:cover">
+    <div class="alert bg-white text-center">
         <h2>
              {{ $category->name }} 
         </h2>
@@ -13,6 +13,12 @@
             {{ $category->description }}
         </p>
     </div>
+</div>
+@endif     
+ <!-- posts -->
+ <div class="container mt-2 pt-5 mb-5">
+    
+  
     <div class="row">
         @if( count($posts) == 0 )
         <p class="pt-5 text-primary">
@@ -312,15 +318,7 @@
 </div>
 
 
- <!-- Global site tag (gtag.js) - Google Analytics -->
- <script async src="https://www.googletagmanager.com/gtag/js?id=G-P1CHPHZCDN"></script>
- <script>
- window.dataLayer = window.dataLayer || [];
- function gtag(){dataLayer.push(arguments);}
- gtag('js', new Date());
 
- gtag('config', 'G-P1CHPHZCDN');
- </script>
 
 @endsection
    

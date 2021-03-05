@@ -17,8 +17,11 @@
             </div>
         @endif
         <div class="row">
-            <div class="col-12">
+            <div class="col-6">
                 <h3> <i class="bi bi-file-earmark-medical-fill"></i> {{ $type }} ({{ count($posts) }}) </h3>
+            </div>
+            <div class="col-6 text-end">
+                <a href="{{ route('ShowAddPost') }}"  class="btn btn-secondary ms-auto"> <i class="bi bi-cloud-plus-fill"></i> أضف مقالة </a>
             </div>
           
             <div class="col-12 alert alert-secondary">
@@ -124,6 +127,8 @@
                                         @if ($p->stat == "inreview" )
                                         <a class="btn btn-success" href="{{ route('ShowEditPost',['id'=> $p->id ]) }}" title="تحديث المقالة"><i class="bi bi-pencil-square"></i> </a>
                                         <a class="btn btn-dark" href="{{ route('SendPostToShare',['id'=> $p->id ]) }}" title="أرسل للنشر"><i class="bi bi-arrow-left-circle"></i> </a>
+                                        @elseif(Auth::user()->id == $p->iduser )
+                                        <a class="btn btn-success" href="{{ route('ShowEditPost',['id'=> $p->id ]) }}" title="تحديث المقالة"><i class="bi bi-pencil-square"></i> </a>
                                         @endif
                                         <a class="btn btn-info text-white" data-bs-toggle="modal" data-bs-target="#postNotes{{$p->id}}" title="إقرأ الملاحظات"  ><i class="bi bi-book-fill"></i> </a>
                         

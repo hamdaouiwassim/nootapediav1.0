@@ -44,6 +44,9 @@ class PostController extends Controller
                 return view('superuser.addPost')->with('categories',$categories);
             }else if(Auth::user()->role == "editor"){
                 return view('editor.addPost')->with('categories',$categories);
+            }else if(Auth::user()->role == "verificateur"){
+                return view('verificateur.addPost')->with('categories',$categories);
+
             }
             
         
@@ -71,6 +74,9 @@ class PostController extends Controller
             $post->idcategory = $request->category ;
             if ($request->meta_description){
                 $post->meta_description = $request->meta_description ;
+            }
+            if ($request->published_at){
+                $post->published_at = $request->published_at ;
             }
             if ( $request->file('image') ){
                 $newname = uniqid().".".$request->file('image')->getClientOriginalExtension();
@@ -157,6 +163,9 @@ class PostController extends Controller
         $post->content = $request->content;
         
         if (Auth::user()->role =="admin" || Auth::user()->role =="verificateur"  ){
+            if ($request->published_at){
+                $post->published_at = $request->published_at ;
+            }
             if($request->note){
                 $post->note = $request->note;
             }

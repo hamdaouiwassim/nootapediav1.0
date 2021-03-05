@@ -32,7 +32,7 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">إسم المستخدم </th>
-                        <th scope="col"> تاريخ التحديث </th>
+                        <th scope="col"> المجموع </th>
                         <th scope="col"> البريد الإلكتروني </th>
                         <th scope="col"> الهاتف </th>
                         <th scope="col"> النوع </th>
@@ -48,7 +48,7 @@
                             <th scope="row">{{ $i }}</th>
                             <td>{{ $u->name }}</td>
                             <td>
-                                {!! $u->created_at !!}
+                                {!! $u->solde !!} دينار
 
 
                             </td>
