@@ -6,7 +6,32 @@
 @section('content')
     <!-- posts -->
     <div class="container mt-5 pt-5 mb-5">
-        <div class="alert alert-secondary">
+                
+    <div class="col-12 card">
+            
+            <div class="row">
+            
+                    <div  class="col-lg-3 col-sm-12">
+                   <span style="position:absolute;top:0;background-color:#e74c3c;color:white;padding:13px;">حدث  اليوم </span>
+                    <img class="col-12" src="http://127.0.0.1:8000/uploads/posts/images/6041f6816348d.jpg" alt="" style="height:200px">
+                    
+                      </div>
+                    
+                    <div class="col-lg-9 col-sm-12">
+                    
+                    <h2 class="text-success pt-3 ms-3"> عيد الإستقلال في تونس </h2>
+                    <p  class="mt-3 ms-3" style="font-size:18px">
+                        
+                    لئن اختلف الأدباء والشعراء والرسّامون والفنّانون في طُرق تعبيرهم عن شعور الفقْد، لغة وصورة ولحْنا.. فإنّه
+                    
+                    </p>
+                    </div>
+            
+                
+            </div>                    
+</div>
+
+        <div class="alert alert-secondary mt-3">
             @if ($posts->currentPage() == 1)
             <h4>
                 <i class="bi bi-calendar2-check"></i> الأحدث
