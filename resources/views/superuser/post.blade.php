@@ -86,7 +86,15 @@
         <main>
     <!-- posts -->
     <div class="col-md-12" @if($post->image) style="height:500px;background-image: url('{{ asset('uploads/posts/images')}}/{{ $post->image }}');background-size:cover" @else style="height:500px;background-image: url('{{ asset('img/nootapedia.png')}}');background-size:cover" @endif >
-       
+        @if( $post->type == "guest" )
+        <div class="m-5 p-5">        
+                <div class="m-5 p-5">
+                            <p class="alert text-white text-center m-5 p-5" style="background-color:rgba(0,0,0,.6);font-size: 2.5rem">
+                                مقالات القرّاء 
+                            </p>
+                    </div>
+                </div>
+            @endif
     </div>
     <div class="container pt-2  mb-5  col-lg-8  col-md-12">
                 <div class="alert " style="background-color:#212529b8 !important; " >

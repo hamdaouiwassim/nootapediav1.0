@@ -104,7 +104,7 @@
                         غير متاحة
                         @endif
                     </td>
-                    <td>{{ $p->user->name }}</td>
+                    <td>@if( $p->type == "writer" ) {{ $p->user->name }} @else {{ $p->writer_name }} @endif</td>
                     <td>
                       @if ($p->stat == "published" )
                       منشورة

@@ -1,10 +1,12 @@
 @extends('layouts.user',array('categories',$categories))
 @section('title',  $category->name )
+@section('postTitle',$category->name)
+@section('postImage',"https://www.nootapedia.com/uploads/categories/images/$category->image")
 @section('MetaDescription',  $category->description )
 @section('content')
 @if($category->image)
 <div class="col-md-12 p-5 mt-5" style="background: url('{{ asset('uploads/categories/images')}}/{{ $category->image }}') no-repeat center center fixed;background-size:cover">
-    <div class="alert bg-white text-center">
+    <div class="alert text-center text-white" style="background-color:rgba(0,0,0,.6);">
         <h2>
              {{ $category->name }} 
         </h2>
@@ -37,8 +39,11 @@
                     <div class="col-lg-6 col-md-12">
                         <div class="card-body">
 
-
-                            <Strong style="font-size:1.2rem;color:#002E63" class="card-title" >{{ $post->title }}</Strong>
+                            <a style="text-decoration: none" href="{{ route('showUserPost', ['id' => $post->id, 'title' => $post->slug]) }}"  >
+                                <Strong style="font-size:1.2rem;color:#002E63"
+                                class="card-title">{{ $post->title }}</Strong>
+                            </a>
+                            
                             <hr />
                             <div class="card-text" >
                                 

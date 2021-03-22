@@ -1,14 +1,25 @@
 @extends('layouts.user',array('categories',$categories))
 @section('title',$post->title)
+@section('postTitle',$post->title)
+@section('postImage',"https://www.nootapedia.com/uploads/posts/images/$post->image")
 @section('MetaDescription',$post->meta_description)
 
 @section('content')
     <!-- posts -->
-    <div class="col-md-12" style="height:500px;background-image: url('{{ asset('uploads/posts/images')}}/{{ $post->image }}');background-size:cover">
-       
+    <div class="col-md-12 p-5" style="height:500px;background-image: url('{{ asset('uploads/posts/images')}}/{{ $post->image }}');background-size:cover">
+    @if( $post->type == "guest" )
+        <div class="m-5">        
+              
+                            <p class="alert text-white text-center" style="background-color:rgba(0,0,0,.6);font-size: 2.5rem">
+                                مقالات القرّاء 
+                            </p>
+                    
+                </div>
+            @endif
     </div>
     <div class="container pt-2  mb-5  col-lg-8  col-md-12">
                 <div class="alert " style="background-color:#212529b8 !important; " >
+                    
                     <h1 class="text-center text-white" style="font-size:1.5rem"> {{ $post->title }}</h1>
                     
                 </div>
@@ -51,7 +62,7 @@
                    
              </div>
              <div class="alert alert-secondary" role="alert">
-                <h4 ><i class="bi bi-person-square"></i> إعداد و كتابة المقال :<span class="text-success"> {{ $post->user->name }} <span></h4>
+                <h4 ><i class="bi bi-person-square"></i> إعداد و كتابة المقال :<span class="text-success">@if( $post->type == "writer" ) {{ $post->user->name }} @else {{ $post->writer_name }} @endif<span></h4>
                 @if($post->verificateur_name)
                 <hr />
                 <h4 ><i class="bi bi-person-bounding-box"></i> تدقيق المقال : <span class="text-success"> {{ $post->verificateur_name }} <span> </h4>
@@ -75,7 +86,7 @@
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v9.0" nonce="apurE7hi"></script>
     
     
-    <div class="col-12 row">
+    <div class="col-12 row p-3">
         @foreach ($related as $rpost)
        
         <div class="col-lg-6 col-md-12 mb-5">
@@ -91,8 +102,10 @@
                                     <div class="card-body">
 
 
-                                        <Strong style="font-size:1.2rem;color:#002E63"
+                                        <a style="text-decoration: none" href="{{ route('showUserPost', ['id' => $rpost->id, 'title' => $rpost->slug]) }}"  >
+                                            <Strong style="font-size:1.2rem;color:#002E63"
                                             class="card-title">{{ $rpost->title }}</Strong>
+                                        </a>
                                         <hr />
                                         <div class="card-text">
 

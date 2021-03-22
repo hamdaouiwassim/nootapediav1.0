@@ -84,16 +84,16 @@ class DashboardController extends Controller
         $users = User::all();
         if(Auth::user()->role == "admin"){
             $categories = Category::all();
-            $posts = Post::where('stat','inreview')->get();
+            $posts = Post::where('stat','inreview')->OrderBy('updated_at','ASC')->get();
             return view('superuser.posts')->with('posts',$posts)->with('categories',$categories)->with('type','في طور المراجعة')->with('users',$users);
         }elseif(Auth::user()->role == "editor"){
             $categories = Category::all();
-            $posts = Auth::user()->posts()->where('stat','inreview')->get();
+            $posts = Auth::user()->posts()->where('stat','inreview')->OrderBy('updated_at','ASC')->get();
             return view('editor.posts')->with('posts',$posts)->with('categories',$categories)->with('type','في طور المراجعة')->with('users',$users);
         }
         else{
             $categories = Category::all();
-            $posts = Post::where('stat','inreview')->get();
+            $posts = Post::where('stat','inreview')->OrderBy('updated_at','ASC')->get();
             return view('verificateur.posts')->with('posts',$posts)->with('categories',$categories)->with('type','في طور المراجعة')->with('users',$users);
         }
     }
@@ -101,7 +101,7 @@ class DashboardController extends Controller
         $users = User::all();
         if(Auth::user()->role == "admin"){
             $categories = Category::all();
-            $posts = Post::where('stat','inreview')->get();
+            $posts = Post::where('stat','inreview')->OrderBy('updated_at','ASC')->get();
             return view('superuser.posts')->with('posts',$posts)->with('categories',$categories)->with('type','مراجعات')->with('users',$users);
         }
 
@@ -177,9 +177,14 @@ class DashboardController extends Controller
     $post->idverificateur = Auth::user()->id  ;
     $post->verificateur_name = Auth::user()->name ;
     if ( $post->update() ){
-        $post->user->solde = $post->user->solde + 8 ;
-      
+        if ($post->type == "writer"){
+            $post->user->solde = $post->user->solde + 8 ;
+        }
+        
+        
         $post->user->update();
+        Auth::user()->solde = Auth::user()->solde + 3;
+        Auth::user()->update();
     }
     return redirect('dashboard/posts');
     }

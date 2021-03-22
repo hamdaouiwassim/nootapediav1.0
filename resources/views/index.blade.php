@@ -1,5 +1,5 @@
 @extends('layouts.user',array('categories',$categories))
-@section('title', ' موسوعة عربية تثقيفية')
+@section('title', $posts->currentPage().' موسوعة عربية تثقيفية')
 @section('MetaDescription',
     ' منصة عربية هدفها إثراء المحتوى العربي على الأنترنت من خلال مقالات وبحوث وأراء في العديد من
     المجالات، التاريخ، العلوم، تكنولوجيا، الأدب والفنّ مع خاصيّة الإستماع الصوتي للمقالات')
@@ -7,9 +7,15 @@
     <!-- posts -->
     <div class="container mt-5 pt-5 mb-5">
         <div class="alert alert-secondary">
+            @if ($posts->currentPage() == 1)
             <h4>
                 <i class="bi bi-calendar2-check"></i> الأحدث
             </h4>
+            @else
+            <h4>
+                <i class="bi bi-calendar2-check"></i> مقالات سابقة
+            </h4>
+            @endif
         </div>
         <div class="row">
             @php $i=0; @endphp
@@ -28,8 +34,10 @@
                                     <div class="card-body">
 
 
-                                        <Strong style="font-size:1.2rem;color:#002E63"
+                                        <a style="text-decoration: none" href="{{ route('showUserPost', ['id' => $post->id, 'title' => $post->slug]) }}"  >
+                                            <Strong style="font-size:1.2rem;color:#002E63"
                                             class="card-title">{{ $post->title }}</Strong>
+                                        </a> 
                                         <hr />
                                         <div class="card-text">
 
