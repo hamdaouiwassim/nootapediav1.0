@@ -8,9 +8,9 @@
     <!-- posts -->
     <div class="col-md-12 p-5" style="height:500px;background-image: url('{{ asset('uploads/posts/images')}}/{{ $post->image }}');background-size:cover">
     @if( $post->type == "guest" )
-        <div class="m-5">        
+        <div class="m-5" style="margin-top:150px !important">        
               
-                            <p class="alert text-white text-center" style="background-color:rgba(0,0,0,.6);font-size: 2.5rem">
+                            <p class="alert text-white text-center" style="background-color:rgba(0,0,0,.6);font-size: 2.2rem">
                                 مقالات القرّاء 
                             </p>
                     
