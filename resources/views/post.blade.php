@@ -29,7 +29,7 @@
 
 
             <div class="col-12">                
-                    <button class="btn btn-primary"><i class="bi bi-calendar-fill"></i> {{ $post->published_at }}</button>
+                    <button class="btn btn-primary"><i class="bi bi-calendar-fill"></i>@php setlocale(LC_TIME, 'ar_TN.utf8') @endphp {{  Carbon\Carbon::parse($post->published_at)->formatLocalized('%A %d %B %Y') }}</button>
                     <button class="btn btn-success"><i class="bi bi-eye-fill"></i> {{ $post->views }}</button>
                    
                     <a href="{{ Route('CategoryPost',['id'=> $post->category->id ,'name'=>$post->category->slug]) }}" class="btn btn-danger"><i class="bi bi-tag-fill"></i> {{ $post->category->name }}</a>
