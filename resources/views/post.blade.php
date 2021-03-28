@@ -3,7 +3,7 @@
 @section('postTitle',$post->title)
 @section('postImage',"https://www.nootapedia.com/uploads/posts/images/$post->image")
 @section('MetaDescription',$post->meta_description)
-
+@section('MetaKeywords',$post->keywords)
 @section('content')
     <!-- posts -->
     <div class="col-md-12 p-5" style="height:500px;background-image: url('{{ asset('uploads/posts/images')}}/{{ $post->image }}');background-size:cover">

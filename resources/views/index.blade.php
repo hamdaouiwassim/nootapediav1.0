@@ -1,8 +1,9 @@
 @extends('layouts.user',array('categories',$categories))
-@section('title', $posts->currentPage().' موسوعة عربية تثقيفية')
+@section('title',' موسوعة عربية تثقيفية')
 @section('MetaDescription',
     ' منصة عربية هدفها إثراء المحتوى العربي على الأنترنت من خلال مقالات وبحوث وأراء في العديد من
     المجالات، التاريخ، العلوم، تكنولوجيا، الأدب والفنّ مع خاصيّة الإستماع الصوتي للمقالات')
+@section('MetaKeywords','')
 @section('content')
     <!-- posts -->
     <div class="container mt-5 pt-5 mb-5">
