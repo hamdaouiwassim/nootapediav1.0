@@ -97,6 +97,7 @@
                 <p class="text-center p-4">
                     <a href="https://www.instagram.com/nootapedia" target="_blank" class="btn btn-outline-secondary text-white"><i class="bi bi-instagram"></i></a>
                     <a href="https://www.facebook.com/nootapedia" target="_blank" class="btn btn-outline-secondary text-white"><i class="bi bi-facebook"></i></a>
+                    <a href="https://twitter.com/nootapedia" target="_blank" class="btn btn-outline-secondary text-white"><i class="bi bi-twitter"></i></a>
                     <a href="https://www.youtube.com/channel/UC-go6AWhZuxnLFC_UKDFWlw" target="_blank" class="btn btn-outline-secondary text-white"><i class="bi bi-youtube"></i></a>
                 </p>
             <hr>

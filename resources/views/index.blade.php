@@ -53,7 +53,11 @@
                                 <div class="col-lg-6 col-md-12"
                                     style="border-radius:0 3px 3px 0;min-height:290px;background-image: url({{ asset('uploads/posts/images') }}/{{ $post->image }});background-size:cover">
 
-
+                                    
+                                    <a style="text-decoration:none;position:absolute;top:0;background-color:rgba(20,20,20,.7);color:white;padding:13px;" href="{{ route('CategoryPost', ['id' => $post->category->id, 'name' => $post->category->slug]) }}"  >
+                                        
+                                       {{ $post->category->name }}
+                                    </a> 
 
                                 </div>
                                 <div class="col-lg-6 col-md-12">
@@ -94,6 +98,14 @@
                         @foreach ($posts as $post)
 
                         @if ($i >= 4 && $i < 8)
+                        <a style="text-decoration:none;" href="{{ route('CategoryPost', ['id' => $post->category->id, 'name' => $post->category->slug]) }}"  >
+                            <span style="background-color:rgba(20,20,20,.7);color:white;padding:13px;margin-bottom:30px;width:100%">{{ $post->category->name }}</span>
+                         
+                                        
+                            
+                         </a> 
+                         <br >
+                         <br >
                                <a style="text-decoration:none !important;" href="{{ route('showUserPost', ['id' => $post->id, 'title' => $post->slug]) }}" > <Strong style="font-size:1.2rem;color:#002E63;margin-bottom:30px;"
                                         class="card-title">{{ $post->title }}</Strong></a><br />
                                        <p style="margin-top:8px;font-size:18px;"> {{ $post->content }} </p><hr style="border: .5px solid #6c757d;margin-top:7px;" />
@@ -112,6 +124,14 @@
                         @foreach ($posts as $post)
 
                             @if ($i >= 8 && $i < 12 )
+                            <a style="text-decoration:none;" href="{{ route('CategoryPost', ['id' => $post->category->id, 'name' => $post->category->slug]) }}"  >
+                                <span style="background-color:rgba(20,20,20,.7);color:white;padding:13px;margin-bottom:30px;width:100%">{{ $post->category->name }}</span>
+                             
+                                            
+                                
+                             </a> 
+                             <br >
+                             <br >
                             <a style="text-decoration:none !important;" href="{{ route('showUserPost', ['id' => $post->id, 'title' => $post->slug]) }}" > <Strong style="font-size:1.2rem;color:#002E63;margin-bottom:30px;"
                                 class="card-title">{{ $post->title }}</Strong></a><br />
                                        <p style="margin-top:8px;font-size:18px;"> {{ $post->content }} </p>

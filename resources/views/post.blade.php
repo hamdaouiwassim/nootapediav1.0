@@ -29,10 +29,10 @@
 
 
             <div class="col-12">                
-                    <button class="btn btn-primary"><i class="bi bi-calendar-fill"></i>@php setlocale(LC_TIME, 'ar_TN.utf8') @endphp {{  Carbon\Carbon::parse($post->published_at)->formatLocalized('%A %d %B %Y') }}</button>
-                    <button class="btn btn-success"><i class="bi bi-eye-fill"></i> {{ $post->views }}</button>
+                    <span class="btn text-white" style="background-color:RGBA(32, 32, 32,.4) "><i class="bi bi-calendar-fill"></i>@php setlocale(LC_TIME, 'ar_TN.utf8') @endphp {{  Carbon\Carbon::parse($post->published_at)->formatLocalized('%A %d %B %Y') }}</span>
+                    <span class="btn text-white" style="background-color:RGBA(32, 32, 32,.7) "><i class="bi bi-eye-fill"></i> {{ $post->views }}</span>
                    
-                    <a href="{{ Route('CategoryPost',['id'=> $post->category->id ,'name'=>$post->category->slug]) }}" class="btn btn-danger"><i class="bi bi-tag-fill"></i> {{ $post->category->name }}</a>
+                    <a href="{{ Route('CategoryPost',['id'=> $post->category->id ,'name'=>$post->category->slug]) }}" class="btn text-white" style="background-color:RGBA(32, 32, 32,.9) "><i class="bi bi-tag-fill"></i> {{ $post->category->name }}</a>
                     @if($post->soundfile)
                     <div class="card text-center mt-3">
                      
