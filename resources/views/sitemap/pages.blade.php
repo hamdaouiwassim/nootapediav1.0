@@ -4,7 +4,7 @@
     <url>
       <loc>{{ $page['url'] }}</loc>
       <lastmod>2021-01-19T20:29:02+00:00</lastmod>
-      @if ($page['url'] == "https://nootapedia.com")
+      @if ($page['url'] == "https://nootapedia.com/")
       <changefreq>daily</changefreq>
       @else
       <changefreq>weekly</changefreq>

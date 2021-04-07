@@ -40,7 +40,14 @@ class SitemapController extends Controller
         $pages[2]["url"] = url("/sharewithus");
         $pages[3]["url"] = url("/contact");
         $pages[4]["url"] = url("/");
-        $pages[4]["url"] = url("/team");
+        $pages[5]["url"] = url("/team");
+        $nbrposts = Post::where('stat','published')->count();
+        for($i=0;$i<$nbrposts/14;$i++){
+          $j=$i+1;
+          $pages[$j+5]['url'] = url("?page=$j");
+
+
+        }
 
       return response()->view('sitemap.pages', [
          'pages' => $pages,
