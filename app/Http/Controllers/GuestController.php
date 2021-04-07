@@ -6,7 +6,7 @@ use App\Category;
 use Illuminate\Http\Request;
 use Str;
 use App\User;
-use App\TodayEvent;
+use App\Todayevent;
 use Carbon\Carbon;
 class GuestController extends Controller
 {
@@ -29,7 +29,7 @@ $categories = Category::all();
                 $post->content = Str::limit($taglessBody,100, ' ...');
             }   
    }
-        $todayevent = TodayEvent::where('date',Carbon::now()->format('Y-m-d'))->first();
+        $todayevent = Todayevent::where('date',Carbon::now()->format('Y-m-d'))->first();
         return view('index')->with('posts',$posts)->with('categories',$categories)->with('todayevent',$todayevent);
     }
     public function ShowUserPost($idpost){

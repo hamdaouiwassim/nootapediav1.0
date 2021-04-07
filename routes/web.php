@@ -73,7 +73,7 @@ Route::get('/dashboard/me', 'UserController@ShowProfile')->name('ShowProfile');
 Route::post('/dashboard/me/edit', 'UserController@MeUpdate')->name('EditUserInfo');
 Route::get('/team', 'GuestController@Team')->name('Team');
 
-Route::get('/dashboard/events','TodayEventController@index')->name('TodayEventList');
-Route::post('/dashboard/AddEvent','TodayEventController@store')->name('AddTodayEvent');
-Route::post('/dashboard/Event/{id}/Edit', 'TodayEventController@update')->name('EditTodayEvent');
-Route::get('/dashboard/Event/{id}/Delete', 'TodayEventController@destroy')->name('DeleteTodayEvent');
+Route::get('/dashboard/events','TodayeventController@index')->name('TodayEventList');
+Route::post('/dashboard/AddEvent','TodayeventController@store')->name('AddTodayEvent');
+Route::post('/dashboard/Event/{id}/Edit', 'TodayeventController@update')->name('EditTodayEvent');
+Route::get('/dashboard/Event/{id}/Delete', 'TodayeventController@destroy')->name('DeleteTodayEvent');
