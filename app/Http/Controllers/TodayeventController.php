@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Todayevent;
 use Illuminate\Http\Request;
-
+use Auth;
+use File;
 class TodayeventController extends Controller
 {
     /**
@@ -15,6 +16,8 @@ class TodayeventController extends Controller
     public function index()
     {
         //
+        $events = TodayEvent::all();
+        return view('superuser.events')->with('events',$events);
     }
 
     /**
@@ -25,6 +28,7 @@ class TodayeventController extends Controller
     public function create()
     {
         //
+        return view('superuser.addevent');
     }
 
     /**
@@ -36,19 +40,14 @@ class TodayeventController extends Controller
     public function store(Request $request)
     {
         //
-        $todyevent = new Todayevent();
-        $todyevent->title = $request->title;
-        $todyevent->description = $request->description;
+        $todayevent = new Todayevent();
+        $todayevent->title = $request->title;
+        $todayevent->description = $request->description;
         
-        $todyevent->date = $request->date;
+        $todayevent->date = $request->date;
 
         if ( $request->file('image') ){
-            $image_path = base_path("public\uploads\todayevents\images\\$category->image");
-
-            if (File::exists($image_path)) {
-                //File::delete($image_path);
-                unlink($image_path);
-            }
+           
             $newname = uniqid().".".$request->file('image')->getClientOriginalExtension();
                 
             //Move Uploaded File
@@ -71,9 +70,9 @@ class TodayeventController extends Controller
      * @param  \App\Todayevent  $todayevent
      * @return \Illuminate\Http\Response
      */
-    public function show(Todayevent $todayevent)
+    public function show($idtodayevent)
     {
-        //
+       
     }
 
     /**
@@ -82,9 +81,11 @@ class TodayeventController extends Controller
      * @param  \App\Todayevent  $todayevent
      * @return \Illuminate\Http\Response
      */
-    public function edit(Todayevent $todayevent)
+    public function edit($idtodayevent)
     {
         //
+        $event = Todayevent::find($idtodayevent);
+        return view('superuser.editevent')->with('event',$event);
     }
 
     /**

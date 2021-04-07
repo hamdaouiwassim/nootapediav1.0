@@ -51,6 +51,9 @@
                             <a class="nav-link" href="{{ route('dashboardusers') }}"><i class="bi bi-people-fill"></i> المستخدمون </a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="{{ route('TodayEventList') }}"><i class="bi bi-people-fill"></i> الأحداث </a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="{{ route('ShowProfile') }}"><i class="bi bi-person-square"></i> حسابي </a>
                         </li>
                        
