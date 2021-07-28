@@ -5,6 +5,12 @@
 @section('MetaDescription',$post->meta_description)
 @section('MetaKeywords',$post->keywords)
 @section('content')
+<style>
+    #st-1{
+        z-index:0 !important;
+    }
+
+</style>
     <!-- posts -->
     <div class="col-md-12 p-5" style="height:500px;background-image: url('{{ asset('uploads/posts/images')}}/{{ $post->image }}');background-size:cover">
     @if( $post->type == "guest" )
@@ -16,6 +22,9 @@
                     
                 </div>
             @endif
+    </div>
+    <div class="col-md-12">
+    
     </div>
     <div class="container pt-2  mb-5  col-lg-8  col-md-12">
                 <div class="alert " style="background-color:#212529b8 !important; " >
@@ -54,6 +63,24 @@
             <img src="{{ asset('uploads/posts/images')}}/{{ $post->image }}" alt="{{ $post->title }}" class="img-fluid img-thumbnail">
 
         </div>
+        <div class="col-12">
+   <!-- Start Annonce -->
+   
+
+   <!-- annonce1 -->
+   <ins class="adsbygoogle"
+        style="display:block"
+        data-ad-client="ca-pub-6342943160992337"
+        data-ad-slot="5367456066"
+        data-ad-format="auto"
+        data-full-width-responsive="true"></ins>
+  
+   <!-- Fin Annonce -->
+   <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+        </div>
+         
             <div class="col-12 pt-5" >
                     <p style="font-size:1.4rem;margin-bottom:70px;" >
                     {!! nl2br(e($post->content)) !!}
@@ -61,6 +88,22 @@
                    
                    
              </div>
+             <div class="col-12">
+               
+
+                <ins class="adsbygoogle"
+                    style="display:block; text-align:center;"
+                    data-ad-layout="in-article"
+                    data-ad-format="fluid"
+                    data-ad-client="ca-pub-6342943160992337"
+                    data-ad-slot="9914858125"></ins>
+                    <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                   </script>
+                
+             </div>
+             <h2 class="text-center mb-3">شارك المقال </h2>
+             <div class="sharethis-inline-share-buttons mb-3"></div>
              <div class="alert alert-secondary" role="alert">
                 <h4 ><i class="bi bi-person-square"></i> إعداد و كتابة المقال :<span class="text-success">@if( $post->type == "writer" ) {{ $post->user->name }} @else {{ $post->writer_name }} @endif<span></h4>
                 @if($post->verificateur_name)
@@ -86,8 +129,22 @@
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v9.0" nonce="apurE7hi"></script>
     
     
-    <div class="col-12 row p-3">
+    <div class="col-12 row">
+        <div class="col-lg-6 col-md-12">
+       
+            <ins class="adsbygoogle"
+            style="display:block; text-align:center;"
+            data-ad-layout="in-article"
+            data-ad-format="fluid"
+            data-ad-client="ca-pub-6342943160992337"
+            data-ad-slot="9914858125"></ins>
+            <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+
+        </div>
         @foreach ($related as $rpost)
+        
        
         <div class="col-lg-6 col-md-12 mb-5">
                         <div class="card mb-3">
@@ -112,6 +169,8 @@
                                             {{ $rpost->content }}
 
                                         </div>
+                                        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
                                         <p class="load-more card-text text-end"
                                             style="position: absolute;bottom: 10px;left: 10px;"><a
                                                 href="{{ route('showUserPost', ['id' => $rpost->id, 'title' => $rpost->slug]) }}"

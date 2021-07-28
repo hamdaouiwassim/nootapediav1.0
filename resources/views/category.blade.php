@@ -27,8 +27,33 @@
             لا توجد أي مقالات ضمن هذا التصنيف ...
         </p>
         @endif
+        @php
+        $i=0
+        @endphp
         @foreach($posts as $post)
+        @php
+        $i++
+        @endphp
+        @if($i==2 || $i==5 || $i==8  )
         <div class="col-lg-6 col-md-12">
+            
+            <div class="card mb-3">
+                
+                <!-- Annonce2 -->
+            <ins class="adsbygoogle"
+                style="display:block"
+                data-ad-client="ca-pub-6342943160992337"
+                data-ad-slot="1169190754"
+                data-ad-format="auto"
+                data-full-width-responsive="true"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+               </script>
+         
+            </div>
+        </div>
+            @endif
+            <div class="col-lg-6 col-md-12">
             <div class="card mb-3">
                 <div class="row g-0">
                     <div class="col-lg-6 col-md-12" style="border-radius:0 3px 3px 0;min-height:290px;background-image: url({{ asset('uploads/posts/images')}}/{{ $post->image  }});background-size:cover">

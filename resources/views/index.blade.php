@@ -21,7 +21,7 @@
                     <div class="col-lg-9 col-sm-12">
                     
                     <h2 class="text-success pt-3 ms-3"> {{ $todayevent->title}} </h2>
-                    <p  class="mt-3 ms-3" style="font-size:18px">
+                    <p  class="mt-3 me-2 ms-3" style="font-size:18px">
                         
                         {{ $todayevent->description }}
                     </p>
@@ -32,10 +32,25 @@
                                
 </div>
 @endif 
+<div class="col-12">
+  
+    <!-- annonce1 -->
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-6342943160992337"
+         data-ad-slot="5367456066"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+
+    <!-- Fin Annonce -->
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+   </script>
+</div>
         <div class="alert alert-secondary mt-3">
             @if ($posts->currentPage() == 1)
             <h4>
-                <i class="bi bi-calendar2-check"></i> الأحدث
+                <i class="bi bi-calendar2-check"></i> أحدث المقالات
             </h4>
             @else
             <h4>
@@ -90,7 +105,24 @@
                 @endif
                 @php $i++; @endphp
             @endforeach
+         
             @if (count($posts) > 3 )
+            <div class="col-12">
+               
+                <!-- annonce1 -->
+                <ins class="adsbygoogle"
+                    style="display:block"
+                    data-ad-client="ca-pub-6342943160992337"
+                    data-ad-slot="5367456066"
+                    data-ad-format="auto"
+                    data-full-width-responsive="true"></ins>
+               
+                <!-- Fin Annonce -->
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+               </script>
+            </div>
+          
             <div class="col-lg-6 col-md-12 p-2 pt-4 pb-4">
                 <div >
                     
@@ -145,6 +177,21 @@
             </div>
             @endif
             @if (count($posts) > 11 )
+            <div class="col-12">
+           
+                <!-- annonce1 -->
+                <ins class="adsbygoogle"
+                    style="display:block"
+                    data-ad-client="ca-pub-6342943160992337"
+                    data-ad-slot="5367456066"
+                    data-ad-format="auto"
+                    data-full-width-responsive="true"></ins>
+             
+                <!-- Fin Annonce -->
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+               </script>
+            </div>
             
                     
                         @php $i=0; @endphp

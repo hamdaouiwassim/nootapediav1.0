@@ -99,11 +99,11 @@ class TodayeventController extends Controller
     {
         //
         //
-        $todyevent = Todayevent::find($idevent);
-        $todyevent->title = $request->title;
-        $todyevent->description = $request->description;
+        $todayevent = Todayevent::find($idevent);
+        $todayevent->title = $request->title;
+        $todayevent->description = $request->description;
         
-        $todyevent->date = $request->date;
+        $todayevent->date = $request->date;
 
         if ( $request->file('image') ){
             $image_path = base_path("public\uploads\todayevents\images\\$category->image");

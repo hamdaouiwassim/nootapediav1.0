@@ -21,7 +21,8 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{{ asset('css/bootstrap-rtl.css') }}">
    <link  rel="stylesheet" href="{{ asset('css/custom.css') }}">
-
+   <script data-ad-client="ca-pub-6342943160992337" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  
 </head>
 
 <body>
@@ -121,6 +122,7 @@
 </script>
    <!-- Global site tag (gtag.js) - Google Analytics -->
    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P1CHPHZCDN"></script>
+  
    <script>
        window.dataLayer = window.dataLayer || [];
 
@@ -132,4 +134,6 @@
        gtag('config', 'G-P1CHPHZCDN');
 
    </script>
+    <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=60ec5290ad0bf0001b123089&product=inline-share-buttons" async="async"></script>
+
 </html>
