@@ -130,7 +130,23 @@
     
     
     <div class="col-12 row">
-        <div class="col-lg-6 col-md-12">
+        
+        <div class="col-lg-6 col-md-12 mb-5 p-1">
+          
+                
+              
+              
+                       
+                        @foreach($shufflePosts as $index => $post )
+                    <a href="{{ route('showUserPost', ['id' => $post->id, 'title' => $post->slug]) }}"
+                                class="btn btn-secondary d-block text-start mt-2"> {{ $post->title }} </a>
+                            
+                        @endforeach
+     
+
+
+        </div>
+        <div class="col-lg-6 col-md-12 mb-5 p-1">
        
             <ins class="adsbygoogle"
             style="display:block; text-align:center;"
@@ -144,8 +160,6 @@
 
         </div>
         @foreach ($related as $rpost)
-        
-       
         <div class="col-lg-6 col-md-12 mb-5 p-1">
                         <div class="card mb-3">
                             <div class="row g-0">
@@ -185,7 +199,7 @@
 
         @endforeach
         
-       
+    
 
     </div>
 @endsection

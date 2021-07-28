@@ -81,7 +81,10 @@ class GuestController extends Controller
             }   
         }
         
-        return view('post')->with('post',$post)->with('categories',$categories)->with('related',$shuffled);
+        $shuffledPosts = Post::where('stat','published')->get()->shuffle();
+        $shufflePosts = $shuffledPosts->skip(0)->take(7);
+
+        return view('post')->with('post',$post)->with('categories',$categories)->with('related',$shuffled)->with('shufflePosts',$shufflePosts);
     }
     public function chercherSpace($taglessBody,$n){
         for( $i=$n; $i<=strlen($taglessBody); $i++ ){
