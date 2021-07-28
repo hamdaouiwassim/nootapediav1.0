@@ -32,6 +32,82 @@
                                
 </div>
 @endif 
+@if ($posts->currentPage() == 1)
+<div class="col-12 row" >
+    <div class="col-lg-6 col-12 pe-2 ps-2 mb-2">
+        <div id="carouselExampleFade" class="carousel slide carousel-fade carousel-dark" data-bs-ride="carousel" >
+            <div class="carousel-inner">
+                @foreach ($mostReadedPosts as  $index => $post)
+                @if($index == 0 )
+                <div class="carousel-item active">
+                    <img src="{{ asset('uploads/posts/images') }}/{{ $post->image }}" class="d-block w-100" alt="{{ $post->title }}" style="height: 350px">
+                    <div class="carousel-caption d-md-block p-2 text-white" style="background: #0000009e">
+                      <a style="text-decoration: none" href="{{ route('showUserPost', ['id' => $post->id, 'title' => $post->slug]) }}"  >
+                                            <Strong style="font-size:1.2rem"
+                                            class="card-title text-white">{{ $post->title }}</Strong>
+                                        </a>
+                    
+                    </div>
+                  </div>
+                @elseif ($index < 3  )
+                <div class="carousel-item">
+                    <img src="{{ asset('uploads/posts/images') }}/{{ $post->image }}" class="d-block w-100" alt="{{ $post->title }}" style="height: 350px">
+                    <div class="carousel-caption d-md-block p-2 text-white" style="background: #0000009e">
+                      <a style="text-decoration: none" href="{{ route('showUserPost', ['id' => $post->id, 'title' => $post->slug]) }}"  >
+                                            <Strong style="font-size:1.2rem"
+                                            class="card-title text-white">{{ $post->title }}</Strong>
+                                        </a>
+                
+                    </div>
+                  </div>
+                @endif
+            
+                @endforeach
+            </div>
+          
+       
+          </div>
+    </div>
+    <div class="col-lg-6 col-12 pe-2 ps-2 mb-2 d-none d-sm-block">
+        <div id="carouselExampleFade" class="carousel slide carousel-fade carousel-dark" data-bs-ride="carousel" >
+            <div class="carousel-inner">
+                @foreach ($shuffled as  $index => $post)
+                @if($index == 0 )
+                <div class="carousel-item active">
+                    <img src="{{ asset('uploads/posts/images') }}/{{ $post->image }}" class="d-block w-100" alt="{{ $post->title }}" style="height: 350px">
+                    <div class="carousel-caption d-md-block p-2 text-white" style="background: #0000009e">
+                       <a style="text-decoration: none" href="{{ route('showUserPost', ['id' => $post->id, 'title' => $post->slug]) }}"  >
+                                            <Strong style="font-size:1.2rem"
+                                            class="card-title text-white">{{ $post->title }}</Strong>
+                                        </a> 
+                    
+                    </div>
+                  </div>
+                @elseif ($index < 3  )
+                <div class="carousel-item">
+                    <img src="{{ asset('uploads/posts/images') }}/{{ $post->image }}" class="d-block w-100" alt="{{ $post->title }}" style="height: 350px">
+                    <div class="carousel-caption d-md-block p-2" style="background: #0000009e">
+                       <a style="text-decoration: none" href="{{ route('showUserPost', ['id' => $post->id, 'title' => $post->slug]) }}"  >
+                                            <Strong style="font-size:1.2rem"
+                                            class="card-title text-white">{{ $post->title }}</Strong>
+                                        </a> 
+                
+                    </div>
+                  </div>
+                @endif
+            
+                @endforeach
+            </div>
+          
+       
+          </div>
+    </div>
+  
+
+
+</div>          
+@endif
+
 <div class="col-12">
   
     <!-- annonce1 -->
@@ -483,7 +559,13 @@
 
     </div>
 
-
+<script>
+ var myCarousel = document.querySelector('#myCarousel')
+    var carousel = new bootstrap.Carousel(myCarousel, {
+      interval: 2000,
+      wrap: false
+    })
+</script>
    
-
+   
 @endsection

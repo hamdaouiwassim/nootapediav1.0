@@ -12,10 +12,15 @@ class GuestController extends Controller
 {
     //
     public function index(){
+        $shuffled = Post::where('stat','published')->get()->shuffle();
+        $shuffled = $shuffled->skip(0)->take(3);
+
+        $mostReadedPosts = Post::where('stat','published')->orderBy('views', 'DESC')->take(3)->get();
+       // dd($mostReadedPosts);
         $posts = Post::where('stat','published')->orderBy('published_at', 'DESC')->paginate(14);
 
 
-$categories = Category::all();
+        $categories = Category::all();
 
        
         foreach($posts as $post){
@@ -30,7 +35,7 @@ $categories = Category::all();
             }   
    }
         $todayevent = Todayevent::where('date',Carbon::now()->format('Y-m-d'))->first();
-        return view('index')->with('posts',$posts)->with('categories',$categories)->with('todayevent',$todayevent);
+        return view('index')->with('posts',$posts)->with('categories',$categories)->with('todayevent',$todayevent)->with('mostReadedPosts',$mostReadedPosts)->with('shuffled',$shuffled);
     }
     public function ShowUserPost($idpost){
         

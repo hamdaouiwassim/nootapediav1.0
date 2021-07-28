@@ -146,7 +146,7 @@
         @foreach ($related as $rpost)
         
        
-        <div class="col-lg-6 col-md-12 mb-5">
+        <div class="col-lg-6 col-md-12 mb-5 p-1">
                         <div class="card mb-3">
                             <div class="row g-0">
                                 <div class="col-lg-6 col-md-12"
