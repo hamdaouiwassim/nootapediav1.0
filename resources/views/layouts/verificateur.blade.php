@@ -148,5 +148,5 @@ $('input').tagsinput({
 });    
     });
 </script>
-
+@yield('scriptsfiles')
 </html>

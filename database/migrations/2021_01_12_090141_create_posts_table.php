@@ -21,6 +21,8 @@ class CreatePostsTable extends Migration
             $table->string('image');
             $table->integer('category');
             $table->string('keywords');
+            $table->string('post_type')->default("old");
+            $table->string('short_description');
             $table->timestamps();
         });
     }

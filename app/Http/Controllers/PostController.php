@@ -68,6 +68,8 @@ class PostController extends Controller
             $post->title = $request->title;
             $post->slug = $this->make_slug($request->title);
             $post->content = $request->content;
+            $post->short_description = $request->short_description;
+            $post->post_type = "new";
             $post->stat = "saved";
             //$post->keywords = $request->keywords;
             $post->iduser = Auth::user()->id ;
@@ -161,7 +163,8 @@ class PostController extends Controller
         $post->title = $request->title;
         $post->slug = $this->make_slug($request->title);
         $post->content = $request->content;
-        
+        $post->short_description = $request->short_description;
+        $post->post_type = "new";
         if (Auth::user()->role =="admin" || Auth::user()->role =="verificateur"  ){
             if ($request->published_at){
                 $post->published_at = $request->published_at ;

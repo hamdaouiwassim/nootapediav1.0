@@ -82,9 +82,13 @@
         </div>
          
             <div class="col-12 pt-5" >
+                @if($post->post_type == "new")
+                {!! $post->content !!}
+                @else
                     <p style="font-size:1.4rem;margin-bottom:70px;" >
                     {!! nl2br(e($post->content)) !!}
                     </p>
+                @endif
                    
                    
              </div>

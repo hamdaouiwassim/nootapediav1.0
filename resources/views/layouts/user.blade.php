@@ -135,5 +135,5 @@
 
    </script>
     <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=60ec5290ad0bf0001b123089&product=inline-share-buttons" async="async"></script>
-
+    @yield('scriptsfiles')
 </html>
