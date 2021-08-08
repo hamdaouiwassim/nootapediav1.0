@@ -145,3 +145,7 @@ background-color: #428bca;
 .pagination{
     justify-content: center!important;
 } 
+.flatBtn{
+
+    border-radius:0 !important;position: relative;top:58px;left:0;
+}

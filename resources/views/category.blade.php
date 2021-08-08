@@ -35,7 +35,7 @@
         $i++
         @endphp
         @if($i==2 || $i==5 || $i==8  )
-        <div class="col-lg-6 col-md-12">
+        <div class="col-lg-6 col-md-12 ps-lg-2">
             
             <div class="card mb-3">
                 
@@ -53,7 +53,7 @@
             </div>
         </div>
             @endif
-            <div class="col-lg-6 col-md-12">
+            <div class="col-lg-6 col-md-12 ps-lg-2">
             <div class="card mb-3">
                 <div class="row g-0">
                     <div class="col-lg-6 col-md-12" style="border-radius:0 3px 3px 0;min-height:290px;background-image: url({{ asset('uploads/posts/images')}}/{{ $post->image  }});background-size:cover">

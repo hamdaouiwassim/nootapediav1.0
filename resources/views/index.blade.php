@@ -8,13 +8,13 @@
     <!-- posts -->
     <div class="container mt-5 pt-5 mb-5">
         @if ($todayevent)      
-    <div class="col-12 card">
+    <div class="col-12 card mb-3">
             
             <div class="row">
             
                     <div  class="col-lg-3 col-sm-12">
                    <span style="position:absolute;top:0;background-color:#e74c3c;color:white;padding:13px;">حدث  اليوم </span>
-                    <img class="col-12" src="{{ asset('uploads/todayevents/images') }}/{{ $todayevent->image }}" alt="" style="height:200px">
+                    <img class="col-12" src="{{ asset('uploads/todayevents/images') }}/{{ $todayevent->image }}" alt="{{ $todayevent->title}}" style="height:200px">
                     
                       </div>
                     
@@ -34,7 +34,7 @@
 @endif 
 @if ($posts->currentPage() == 1)
 <div class="col-12 row" >
-    <div class="col-lg-6 col-12 pe-2 ps-2 mb-2">
+    <div class="col-lg-6 col-12 pe-lg-2 mb-2">
         <div id="carouselExampleFade" class="carousel slide carousel-fade carousel-dark" data-bs-ride="carousel" >
             <div class="carousel-inner">
                 @foreach ($mostReadedPosts as  $index => $post)
@@ -68,8 +68,8 @@
        
           </div>
     </div>
-    <div class="col-lg-6 col-12 pe-2 ps-2 mb-2 d-none d-sm-block">
-        <div id="carouselExampleFade" class="carousel slide carousel-fade carousel-dark" data-bs-ride="carousel" >
+    <div class="col-lg-6 col-12  ps-lg-2 mb-2 d-none d-sm-block">
+        <div id="carouselExampleFade1" class="carousel slide carousel-fade carousel-dark" data-bs-ride="carousel" >
             <div class="carousel-inner">
                 @foreach ($shuffled as  $index => $post)
                 @if($index == 0 )
@@ -138,7 +138,7 @@
             @php $i=0; @endphp
             @foreach ($posts as $post)
                 @if ($i < 4)
-                    <div class="col-lg-6 col-md-12">
+                    <div class="col-lg-6 col-md-12 @if($i % 2 == 0) pe-lg-2 @else ps-lg-2 @endif">
                         <div class="card mb-3">
                             <div class="row g-0">
                                 <div class="col-lg-6 col-md-12"
@@ -273,12 +273,12 @@
                         @php $i=0; @endphp
                         @foreach ($posts as $post)
                         @if ( $i == 12 || $i == 13 )
-                        <div class="col-lg-6 col-md-12">
+                        <div class="col-lg-6 col-md-12 @if($i == 12) pe-lg-2 @else ps-lg-2 @endif ">
                             <div class="col-12 mb-2">
                           
-                            <a href="{{ route('showUserPost', ['id' => $post->id, 'title' => $post->slug]) }}" class="btn btn-secondary col-12 p-3" >{{ $post->title }} ... </a>
+                            <a href="{{ route('showUserPost', ['id' => $post->id, 'title' => $post->slug]) }}" class="btn btn-secondary col-12 p-3 flatBtn" >{{ $post->title }} ... </a>
                             <a href="{{ route('showUserPost', ['id' => $post->id, 'title' => $post->slug]) }}"  >
-                                 <img src="{{ asset('uploads/posts/images') }}/{{ $post->image }}" alt="{{ $post->title }}"  class="img-hovred img-fluid img-thumbnail">
+                                 <img src="{{ asset('uploads/posts/images') }}/{{ $post->image }}" alt="{{ $post->title }}"  class="img-hovred img-fluid">
                             </a>
                                
                                
@@ -559,13 +559,7 @@
 
     </div>
 
-<script>
- var myCarousel = document.querySelector('#myCarousel')
-    var carousel = new bootstrap.Carousel(myCarousel, {
-      interval: 2000,
-      wrap: false
-    })
-</script>
+
    
    
 @endsection

@@ -82,7 +82,7 @@ class GuestController extends Controller
         }
         
         $shuffledPosts = Post::where('stat','published')->get()->shuffle();
-        $shufflePosts = $shuffledPosts->skip(0)->take(7);
+        $shufflePosts = $shuffledPosts->skip(0)->take(4);
 
         return view('post')->with('post',$post)->with('categories',$categories)->with('related',$shuffled)->with('shufflePosts',$shufflePosts);
     }
