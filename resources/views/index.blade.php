@@ -162,7 +162,13 @@
                                         <hr />
                                         <div class="card-text">
 
-                                            {{ $post->content }}
+                                            @if($post->post_type == "new")
+                                            {!! $post->short_description !!}
+                                            @else
+                                             
+                                                {!! $post->content !!} 
+                                             
+                                            @endif
 
                                         </div>
                                         <p class="load-more card-text text-end"
@@ -216,7 +222,14 @@
                          <br >
                                <a style="text-decoration:none !important;" href="{{ route('showUserPost', ['id' => $post->id, 'title' => $post->slug]) }}" > <Strong style="font-size:1.2rem;color:#002E63;margin-bottom:30px;"
                                         class="card-title">{{ $post->title }}</Strong></a><br />
-                                       <p style="margin-top:8px;font-size:18px;"> {{ $post->content }} </p><hr style="border: .5px solid #6c757d;margin-top:7px;" />
+                                       <p style="margin-top:8px;font-size:18px;">   
+                                                    @if($post->post_type == "new")
+                                                    {!! $post->short_description !!}
+                                                    @else
+                                                    
+                                                        {!! $post->content !!}
+                                                    
+                                                    @endif </p><hr style="border: .5px solid #6c757d;margin-top:7px;" />
                             @endif
                             @php $i++; @endphp
                         @endforeach
@@ -242,7 +255,13 @@
                              <br >
                             <a style="text-decoration:none !important;" href="{{ route('showUserPost', ['id' => $post->id, 'title' => $post->slug]) }}" > <Strong style="font-size:1.2rem;color:#002E63;margin-bottom:30px;"
                                 class="card-title">{{ $post->title }}</Strong></a><br />
-                                       <p style="margin-top:8px;font-size:18px;"> {{ $post->content }} </p>
+                                       <p style="margin-top:8px;font-size:18px;">   @if($post->post_type == "new")
+                                        {!! $post->short_description !!}
+                                        @else
+                                         
+                                            {!! $post->content !!}
+                                         
+                                        @endif </p>
                                        <hr style="border: .5px solid #6c757d;margin-top:7px;" />
 
                             @endif

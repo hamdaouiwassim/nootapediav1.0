@@ -84,7 +84,7 @@
                 </div>
                 <div class="mb-3">
                     <label  class="form-label">وصف الصفحة في الصفحة الرئسية </label>
-                    <textarea  class="form-control"  name="short_description" maxlength="100" >{{ $post->short_description }}</textarea>
+                    <textarea  class="form-control"  name="short_description" maxlength="103" >{{ $post->short_description }}</textarea>
                   </div>
 
                 <div class="mb-3">

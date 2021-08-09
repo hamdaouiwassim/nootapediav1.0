@@ -22,7 +22,9 @@
     <link rel="stylesheet" href="{{ asset('css/bootstrap-rtl.css') }}">
    <link  rel="stylesheet" href="{{ asset('css/custom.css') }}">
    <script data-ad-client="ca-pub-6342943160992337" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  
+   <script async defer crossorigin="anonymous" src="https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v9.0" nonce="apurE7hi"></script>
+    
+    
 </head>
 
 <body>
@@ -102,12 +104,22 @@
                     <a href="https://www.youtube.com/channel/UC-go6AWhZuxnLFC_UKDFWlw" target="_blank" class="btn btn-outline-secondary text-white"><i class="bi bi-youtube"></i></a>
                 </p>
             <hr>
+           
             <p class="text-center p-2">
                 <a href="{{ route('Privacy') }}" class="text-white" style="font-size: 14px;text-decoration:none;">سياسة الخصوصية</a> |
                 <a href="https://www.nootapedia.com/sitemap.xml" class="text-white" style="font-size: 14px;text-decoration:none;">خريطة الموقع</a>
             </p>
            
             <hr>
+            <div class=" text-center">
+
+                <div class="fb-page" 
+                data-href="https://www.facebook.com/nootapedia"
+                style="max-width: 380px;width:100%"
+                data-hide-cover="false"
+                data-show-facepile="false"></div>
+            </div>
+            <hr />
             <p class="text-center">
                 <span style="font-size: 12px;"> كل الحقوق محفوظة لنوتابيديا - 2020 | محتوانا مقدم للجميع فالمرجو إحترامه
                     و

@@ -149,3 +149,19 @@ background-color: #428bca;
 
     border-radius:0 !important;position: relative;top:58px;left:0;
 }
+
+#st-1{
+    z-index:0 !important;
+}
+.pShadow{
+    -webkit-box-shadow: 0px 0px 3px 0px rgba(179,177,179,1);
+    -moz-box-shadow: 0px 0px 3px 0px rgba(179,177,179,1);
+    box-shadow: 0px 0px 3px 0px rgba(179,177,179,1);
+}
+.single_post img{
+width:100% !important;
+}
+.single_post a{
+    text-decoration: none;
+    font-weight: bold;
+}
