@@ -1,5 +1,5 @@
 @extends('layouts.user',array('categories',$categories))
-@section('title',' موسوعة عربية تثقيفية')
+@section('title',' نوتابيديا : موسوعة عربيّة تثقيفيّة ')
 @section('MetaDescription',
     ' منصة عربية هدفها إثراء المحتوى العربي على الأنترنت من خلال مقالات وبحوث وأراء في العديد من
     المجالات، التاريخ، العلوم، تكنولوجيا، الأدب والفنّ مع خاصيّة الإستماع الصوتي للمقالات')
@@ -134,7 +134,7 @@
             </h4>
             @endif
         </div>
-        <div class="row">
+        <div class="row" >
             @php $i=0; @endphp
             @foreach ($posts as $post)
                 @if ($i < 4)
@@ -229,7 +229,10 @@
                                                     
                                                         {!! $post->content !!}
                                                     
-                                                    @endif </p><hr style="border: .5px solid #6c757d;margin-top:7px;" />
+                                                    @endif </p>
+                                                    @if ( $i != 7 )
+                                                    <hr style="border: .5px solid #6c757d;margin-top:7px;" />
+                                                    @endif
                             @endif
                             @php $i++; @endphp
                         @endforeach
@@ -262,7 +265,9 @@
                                             {!! $post->content !!}
                                          
                                         @endif </p>
+                                        @if ( $i != 11 )
                                        <hr style="border: .5px solid #6c757d;margin-top:7px;" />
+                                       @endif
 
                             @endif
                             @php $i++; @endphp
@@ -312,7 +317,7 @@
                     
             @endif 
         
-            <hr class="mt-3" style="border: .5px solid #6c757d;margin-top:7px;"  />
+
             <div class="p-3">
                 {{ $posts->links() }}
             </div>

@@ -1,5 +1,5 @@
 @extends('layouts.user',array('categories',$categories))
-@section('title',$post->title)
+@section('title',"$post->title - نوتابيديا ")
 @section('postTitle',$post->title)
 @section('postImage',"https://www.nootapedia.com/uploads/posts/images/$post->image")
 @section('MetaDescription',$post->meta_description)
@@ -17,9 +17,6 @@
                     
                 </div>
             @endif
-    </div>
-    <div class="col-md-12">
-    
     </div>
     <div class="container pt-2  mb-5  col-lg-8  col-md-12 pShadow">
                 <div class="alert " style="background-color:#212529b8 !important; " >
@@ -115,7 +112,7 @@
                @endif
               </div>
              <div class="alert alert-secondary mt-3 mr-2 ml-2">
-                 رأيك يستحقّ أن يسمعه الأخرون ... أترك تعليقك ليعرف العالم من أنت 
+               <h3> ماذا تعرف عن "{{ $post->title }}" شاركنا بها في التعليقات </h3>
              </div>
             <div class="fb-comments col-12" data-href="{{ url()->current() }}" data-width="100%" data-numposts="5"></div>
             <div id="fb-root"></div>
@@ -144,7 +141,7 @@
 
 
         </div>
-        <div class="col-lg-6 col-md-12 mb-5 p-3">
+        <div class="col-lg-6 col-md-12 mb-5 p-3" style="overflow: hidden;">
        
             <ins class="adsbygoogle"
             style="display:block; text-align:center;"
@@ -178,7 +175,13 @@
                                         <hr />
                                         <div class="card-text">
 
-                                            {{ $rpost->content }}
+                                            @if($rpost->post_type == "new")
+                                            {!! $rpost->short_description !!}
+                                            @else
+                                             
+                                                {!! $rpost->content !!}
+                                             
+                                            @endif
 
                                         </div>
                                         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>

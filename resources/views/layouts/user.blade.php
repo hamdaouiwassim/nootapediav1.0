@@ -12,7 +12,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta property="og:title" content="@yield('postTitle')">
     <meta property="og:image" content="@yield('postImage')">
-    <title>نوتابيديا :  @yield('title')</title>
+    <title> @yield('title')</title>
     <link rel="icon" href="{{ asset('img/1.png') }}" type="image/x-icon"/>
     <link rel="stylesheet" href="{{ asset('css/icons/bootstrap-icons.css') }}">
     <link rel="preconnect" href="https://fonts.gstatic.com">

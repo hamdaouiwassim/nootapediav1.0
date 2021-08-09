@@ -6,6 +6,7 @@ margin: 0;
 width: auto;
 max-width: inherit;
 }
+
 .bootstrap-tagsinput.form-control input::-moz-placeholder {
 color: #777;
 opacity: 1;
@@ -161,7 +162,18 @@ background-color: #428bca;
 .single_post img{
 width:100% !important;
 }
+.single_post p{
+    line-height: 1.6;
+}
 .single_post a{
     text-decoration: none;
+    color : #2991e9;
     font-weight: bold;
+}
+
+.single_post h2{
+    
+    margin-bottom: 20px;
+    margin-top: 20px;
+    
 }
